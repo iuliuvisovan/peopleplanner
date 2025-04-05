@@ -424,7 +424,10 @@ const MainContainer = styled.main`
 
 function App() {
   const [hotels, setHotels] = useState(accommodations);
-  const [unassignedPeople, setUnassignedPeople] = useState(samplePeople);
+  // Sort people by ID initially
+  const [unassignedPeople, setUnassignedPeople] = useState(
+    [...samplePeople].sort((a, b) => a.id.localeCompare(b.id))
+  );
 
   const handleAssignPerson = useCallback(
     (personId, roomId) => {
@@ -501,9 +504,13 @@ function App() {
       }),
     );
 
-    // Add the person back to unassigned list if we found them
+    // Add the person back to unassigned list if we found them and sort by ID
     if (foundPerson) {
-      setUnassignedPeople((prev) => [...prev, foundPerson]);
+      setUnassignedPeople((prev) => {
+        const updatedList = [...prev, foundPerson];
+        // Sort by ID (assumes IDs are alphanumeric and should be sorted alphabetically)
+        return updatedList.sort((a, b) => a.id.localeCompare(b.id));
+      });
     }
   }, []);
 
