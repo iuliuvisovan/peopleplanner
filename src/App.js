@@ -392,7 +392,6 @@ const AppContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: #f7f9fc;
   font-family: 'Montserrat', sans-serif;
 `;
 
@@ -403,7 +402,7 @@ const Header = styled.header`
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 `;
 
-const HeaderTitle = styled.h1`
+const HeaderTitle = styled.h2`
   margin: 0;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;

@@ -3,7 +3,7 @@ import Person from './Person';
 
 const Container = styled.div`
   flex: 1;
-  background-color: white;
+  background-color: #fffd;
   border-radius: 0.75rem;
   padding: 1.5rem;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.06);
@@ -48,7 +48,7 @@ const EmptyState = styled.div`
 function PersonList({ people }) {
   return (
     <Container>
-      <Title>Invitați la Nuntă</Title>
+      <Title>Invitați</Title>
       <List>
         {people.length > 0 ? (
           people.map((person) => <Person key={person.id} id={person.id} name={person.name} fromWho={person.fromWho} inRoom={false} />)

@@ -4,7 +4,7 @@ import Room from './Room';
 
 const Container = styled.div`
   flex: 2;
-  background-color: white;
+  background-color: #fffe;
   border-radius: 0.75rem;
   padding: 1.5rem;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);

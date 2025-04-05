@@ -7,7 +7,14 @@
 body {
   font-family: 'Montserrat', sans-serif;
   color: #444240;
-  background-color: #f7f9fc;
+  background-image: url('./assets/cover.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 ::-webkit-scrollbar {
