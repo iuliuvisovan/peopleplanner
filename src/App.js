@@ -356,7 +356,7 @@ const accommodations = [
   // Apoi hotelurile
   {
     id: 4,
-    name: 'Hotel "Elania Resort" - 22 camere',
+    name: 'Hotel "Elitis" - 22 camere',
     rooms: [
       { id: 'elania-double-1', name: 'Cameră Dublă 1', capacity: 2, guests: [] },
       { id: 'elania-double-2', name: 'Cameră Dublă 2', capacity: 2, guests: [] },
