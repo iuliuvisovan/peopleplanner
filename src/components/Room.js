@@ -11,7 +11,6 @@ const RoomContainer = styled.div`
   border: 1px solid hsl(36 100% 70% / 1);
   background: hsl(41 98% 92% / 1);
   height: ${(props) => (props.capacity === 3 ? '270px' : '210px')};
-  opacity: ${(props) => (props.isFull ? '0.8' : '1')};
 
   ${(props) =>
     props.isOver &&

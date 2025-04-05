@@ -44,15 +44,15 @@ const invitees = [
   { id: 100, name: 'Mirabela Gherasim' },
   {
     id: 101,
-    name: 'Ionut a lu Mirabela',
+    name: 'Carcea Ionuț',
   },
   {
     id: 102,
-    name: 'Andreea Tarus',
+    name: 'Andreea Țăruș',
   },
   {
     id: 103,
-    name: 'Ilie a lu Andreea - Ilie Vieru',
+    name: 'Ilie Vieru',
   },
   {
     id: 104,
@@ -60,19 +60,19 @@ const invitees = [
   },
   {
     id: 105,
-    name: 'Gheorghita Ciobanu',
+    name: 'Gheorghiță Ciobanu',
   },
   {
     id: 106,
-    name: 'Daniel Rosca',
+    name: 'Daniel Roșca',
   },
   {
     id: 107,
-    name: 'Teodora Angheluta',
+    name: 'Teodora Angheluță',
   },
   {
     id: 108,
-    name: 'George Vranceanu',
+    name: 'George Vrânceanu',
   },
   {
     id: 109,
@@ -85,14 +85,6 @@ const invitees = [
   {
     id: 111,
     name: 'Partenera lu Bogdan Iacob',
-  },
-  {
-    id: 112,
-    name: 'Acatrinei Doina',
-  },
-  {
-    id: 113,
-    name: 'Acatrinei Doru',
   },
   {
     id: 114,
@@ -108,19 +100,12 @@ const invitees = [
   },
   {
     id: 117,
-    name: 'Coca Martin - nume adev: Iuliana Constantiniu',
+    name: 'Iuliana Constantiniu',
+    note: '"Coca Marțin"',
   },
   {
     id: 118,
     name: 'Sotul Cocai - nume adev Tudor Constantiniu',
-  },
-  {
-    id: 119,
-    name: 'Sulugiuc Roxana',
-  },
-  {
-    id: 120,
-    name: 'Sulugiuc Dragos',
   },
   {
     id: 121,
@@ -224,7 +209,7 @@ const invitees = [
   },
   {
     id: 146,
-    name: 'Luca Petrica',
+    name: 'Luca Petrică',
   },
   {
     id: 147,
@@ -244,31 +229,25 @@ const invitees = [
   },
   {
     id: 151,
-    name: 'Galbin Anisoara',
+    name: 'Galbin Anișoara',
   },
   {
     id: 152,
-    name: 'Mihaela Matase',
+    name: 'Mihaela Mătase',
   },
   {
     id: 153,
-    name: 'Puiu Matase',
-  },
-  {
-    id: 154,
-    name: 'Elena Palade',
-  },
-  {
-    id: 155,
-    name: 'Razvan Livadariu',
+    name: 'Puiu Mătase',
   },
   {
     id: 156,
-    name: 'Cristina Esanu - nume adev Cristina Marinela Balmuș',
+    name: 'Cristina Marinela Balmuș',
+    notes: 'Cristina Eșanu'
   },
   {
     id: 157,
-    name: 'Sotu lu Cristina Esanu - Ionut Balmuș',
+    name: 'Ionut Balmuș',
+    notes: 'soț Cristina Eșanu'
   },
   {
     id: 158,
@@ -277,46 +256,6 @@ const invitees = [
   {
     id: 159,
     name: 'Iubitul lui Mihaela Bogdan - aka Bogdan Agache',
-  },
-  {
-    id: 160,
-    name: 'Inbal Matityahu',
-  },
-  {
-    id: 161,
-    name: 'Andrei Roba',
-  },
-  {
-    id: 162,
-    name: 'Razvan Serbanescu',
-  },
-  {
-    id: 163,
-    name: 'Sotia lu Razvan Serbanescu',
-  },
-  {
-    id: 164,
-    name: 'Ana Detot',
-  },
-  {
-    id: 165,
-    name: 'Andrei Detot',
-  },
-  {
-    id: 166,
-    name: 'Iubitu lu Codruta',
-  },
-  {
-    id: 167,
-    name: 'Iulia Pascariuc',
-  },
-  {
-    id: 168,
-    name: 'Ionut Pascariuc',
-  },
-  {
-    id: 169,
-    name: 'Codruta Cenan',
   },
 ];
 
@@ -452,70 +391,68 @@ function App() {
     try {
       // Try to load saved guest-to-room assignments
       const savedGuestRoomMappings = localStorage.getItem('guestRoomMappings');
-      
+
       if (savedGuestRoomMappings) {
         // Parse the saved guest-to-room mappings
         const guestRoomMappings = JSON.parse(savedGuestRoomMappings);
-        
+
         // Create a set of assigned guest IDs for quick lookup
         const assignedGuestIds = new Set();
-        guestRoomMappings.forEach(mapping => {
+        guestRoomMappings.forEach((mapping) => {
           assignedGuestIds.add(mapping.guestId);
         });
-        
+
         // Start with the default accommodations structure
-        const hotelsWithSavedGuests = accommodations.map(hotel => {
+        const hotelsWithSavedGuests = accommodations.map((hotel) => {
           // Create a deep copy of the hotel
           const hotelCopy = { ...hotel, rooms: [...hotel.rooms] };
-          
+
           // For each room in the hotel, find and apply saved guest assignments
-          hotelCopy.rooms = hotelCopy.rooms.map(room => {
+          hotelCopy.rooms = hotelCopy.rooms.map((room) => {
             // Find all guest mappings for this room
-            const roomMappings = guestRoomMappings.filter(mapping => mapping.roomId === room.id);
-            
+            const roomMappings = guestRoomMappings.filter((mapping) => mapping.roomId === room.id);
+
             if (roomMappings.length > 0) {
               // For each mapping, find the guest in the invitees array
               const guests = roomMappings
-                .map(mapping => {
+                .map((mapping) => {
                   // Find the guest in the invitees array by ID
-                  const guest = invitees.find(person => person.id === mapping.guestId);
-                  
+                  const guest = invitees.find((person) => person.id === mapping.guestId);
+
                   // If found in invitees, use that; if not, try to use the saved name (for redundancy)
                   if (guest) {
                     return guest;
                   } else if (mapping.guestName) {
                     // Create minimal guest object with the saved name if the original isn't found
                     console.warn(`Guest ID ${mapping.guestId} not found in invitees array, using saved name`);
-                    return { 
-                      id: mapping.guestId, 
+                    return {
+                      id: mapping.guestId,
                       name: mapping.guestName,
-                      fromWho: mapping.fromWho || undefined
+                      fromWho: mapping.fromWho || undefined,
                     };
                   }
                   return null;
                 })
-                .filter(guest => guest !== null); // Filter out any null guests
-              
+                .filter((guest) => guest !== null); // Filter out any null guests
+
               return {
                 ...room,
-                guests: guests
+                guests: guests,
               };
             } else {
               return { ...room, guests: [] };
             }
           });
-          
+
           return hotelCopy;
         });
-        
+
         // Calculate unassigned people as all invitees not in assignedGuestIds
-        const unassignedPeople = invitees
-          .filter(person => !assignedGuestIds.has(person.id))
-          .sort((a, b) => a.id - b.id);
-        
+        const unassignedPeople = invitees.filter((person) => !assignedGuestIds.has(person.id)).sort((a, b) => a.id - b.id);
+
         return {
           hotels: hotelsWithSavedGuests,
-          unassignedPeople: unassignedPeople
+          unassignedPeople: unassignedPeople,
         };
       }
     } catch (err) {
@@ -726,22 +663,22 @@ function App() {
     try {
       // Create a flat array of guest-to-room mappings with minimum needed info
       const guestRoomMappings = [];
-      
+
       // Extract all guest->room assignments from hotels
-      hotels.forEach(hotel => {
-        hotel.rooms.forEach(room => {
+      hotels.forEach((hotel) => {
+        hotel.rooms.forEach((room) => {
           // For each guest in the room, create a mapping entry
-          room.guests.forEach(guest => {
+          room.guests.forEach((guest) => {
             guestRoomMappings.push({
               guestId: guest.id,
               guestName: guest.name, // Save name for redundancy
               fromWho: guest.fromWho, // Save additional info for redundancy
-              roomId: room.id
+              roomId: room.id,
             });
           });
         });
       });
-      
+
       // Save only the mapping between guests and rooms, with basic guest info for redundancy
       localStorage.setItem('guestRoomMappings', JSON.stringify(guestRoomMappings));
       console.log('Guest-room mappings saved to localStorage');

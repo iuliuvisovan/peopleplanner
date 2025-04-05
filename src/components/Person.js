@@ -8,18 +8,21 @@ const PersonItem = styled.div`
   border-radius: 0.5rem;
   box-shadow: 0 0px 4px rgba(0, 0, 0, 0.26);
   transition: all 0.05s;
-  cursor: grab;
+  cursor: ${(props) => (props.inRoom ? 'pointer' : 'grab')};
   opacity: ${(props) => (props.isDragging ? 0.5 : 1)};
   border-left: 4px solid
     ${(props) => {
-      return props.fromWho === 'groom' ? '#1991d2' : '#e2a1ad';
+      return props.fromWho === 'groom' ? '#1991d2' : 'hsl(349 71% 76% / 1)';
       // return props.inRoom ? 'green' : '#ffbd59';
     }};
 
   &:hover {
     transform: scale(103%);
     box-shadow: 0 0px 12px rgba(0, 0, 0, 0.12);
-    /* background-color: #f8f8f8; */
+  }
+
+  &:active {
+    transform: ${(props) => (props.inRoom ? 'scale(97%)' : 'scale(103%)')};
   }
 `;
 
@@ -50,13 +53,15 @@ function Person({ id, name, inRoom, roomId, onUnassign, fromWho }) {
     [id, name, inRoom, roomId, fromWho],
   );
 
-  // Remove click handler functionality
+  // Click handler to unassign a person when they're in a room
   const handleClick = () => {
-    // No action on click
+    if (inRoom && onUnassign) {
+      onUnassign(id, roomId);
+    }
   };
 
   // Add hover title in Romanian
-  const title = inRoom ? 'Trage pentru a muta' : 'Trage pentru a atribui';
+  const title = inRoom ? 'Apasă pentru a elimina sau trage pentru a muta' : 'Trage pentru a atribui';
 
   return (
     <PersonItem ref={drag} isDragging={isDragging} onClick={handleClick} inRoom={inRoom} fromWho={fromWho} title={title}>
