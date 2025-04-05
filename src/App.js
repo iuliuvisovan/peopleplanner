@@ -432,15 +432,19 @@ function App() {
       const person = unassignedPeople.find((p) => p.id === personId);
       if (!person) return;
 
-      // Remove from unassigned list
-      setUnassignedPeople((prev) => prev.filter((p) => p.id !== personId));
-
       // Add to room
-      setHotels((prev) =>
-        prev.map((hotel) => {
+      setHotels((prev) => {
+        const updatedHotels = prev.map((hotel) => {
           // Check if the room belongs to this hotel
           const roomIndex = hotel.rooms.findIndex((room) => room.id === roomId);
           if (roomIndex === -1) return hotel;
+          
+          const room = hotel.rooms[roomIndex];
+          
+          // Check if room is already at capacity
+          if (room.guests.length >= room.capacity) {
+            return hotel; // Don't add if room is already full
+          }
 
           // Clone the hotel and its rooms
           const updatedHotel = { ...hotel, rooms: [...hotel.rooms] };
@@ -451,8 +455,18 @@ function App() {
           };
 
           return updatedHotel;
-        }),
-      );
+        });
+        
+        // Check if any hotel was updated (guest was added to a room)
+        const wasAdded = JSON.stringify(updatedHotels) !== JSON.stringify(prev);
+        
+        // Only remove from unassigned list if the person was added to a room
+        if (wasAdded) {
+          setUnassignedPeople((prevPeople) => prevPeople.filter((p) => p.id !== personId));
+        }
+        
+        return updatedHotels;
+      });
     },
     [unassignedPeople],
   );

@@ -7,18 +7,25 @@ const RoomContainer = styled.div`
   border-radius: 0.5rem;
   padding: 1.25rem;
   margin-bottom: 1rem;
-  transition: all 0.2s;
+  transition: box-shadow 0.2s, background-color 0.2s;
   border: 1px solid #ffe0b2;
   background: hsl(41 98% 98% / 1);
-
-  height: ${(props) => (props.capacity === 3 ? '280px' : '222px')};
+  height: ${(props) => (props.capacity === 3 ? '270px' : '210px')};
+  opacity: ${(props) => (props.isFull ? '0.8' : '1')};
 
   ${(props) =>
     props.isOver &&
+    !props.isFull &&
     `
     box-shadow: 0 0 0 2px #ffbd59, 0 4px 10px rgba(0, 0, 0, 0.12);
-    transform: translateY(-2px);
     background-color: #fff8f0;
+  `}
+
+  ${(props) =>
+    props.isFull &&
+    `
+    border: 1px solid hsl(100 50% 65% / 1);
+    background-color: hsl(100 50% 95% / 1);
   `}
 `;
 
@@ -27,8 +34,6 @@ const RoomHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
-  border-bottom: 1px solid #ffbf47;
-  padding-bottom: 0.75rem;
 `;
 
 const RoomName = styled.h3`
@@ -40,51 +45,49 @@ const RoomName = styled.h3`
 `;
 
 const RoomCapacity = styled.div`
-  background-color: ${(props) => {
-    if (props.filled > props.capacity) return '#fff';
-    if (props.filled === props.capacity) return '#fff2e6';
-    return '#fff';
-  }};
-
-  color: hsl(39 87% 45% / 1);
-
+  font-weight: ${(props) => (props.filled >= props.capacity ? '700' : '600')};
   padding: 0.25rem 0.5rem;
   border-radius: 2rem;
   font-size: 0.875rem;
-  font-weight: 600;
   font-family: 'Montserrat', sans-serif;
-  border: 1px solid hsl(32 100% 75% / 1);
+  border: 1px solid ${(props) => (props.filled >= props.capacity ? '#f59e0b' : 'hsl(32 100% 75% / 1)')};
   letter-spacing: 1.5px;
+  background-color: #fff;
+
+  border-color: ${(props) => (props.filled >= props.capacity ? 'hsl(100 50% 45% / 1)' : 'hsl(39 87% 75% / 1)')};
+  color: ${(props) => (props.filled >= props.capacity ? 'hsl(100 50% 45% / 1)' : 'hsl(39 87% 45% / 1)')};
 `;
 
 const GuestList = styled.div`
   min-height: ${(props) => (props.capacity === 3 ? '140px' : '100px')};
   background-color: ${(props) => (props.isOver ? '#fff8f0' : 'transparent')};
   border-radius: 0.25rem;
-  transition: background-color 0.2s;
   padding: ${(props) => (props.isEmpty ? '0' : '0.5rem 0')};
-  height: calc(100% - 56px);
+  height: calc(100% - 42px);
 `;
 
 const EmptyState = styled.div`
   text-align: center;
-  border: 2px dashed hsl(32 100% 73% / 1);
+  border: 2px dashed ${(props) => (props.isFull ? '#e0e0e0' : 'hsl(32 100% 73% / 1)')};
   border-radius: 10px;
   font-style: italic;
-  background-color: #fff;
+  background-color: ${(props) => (props.isFull ? '#f9f9f9' : '#fff')};
   font-family: 'Montserrat', sans-serif;
   font-size: 0.9rem;
-  min-height: ${(props) => (props.capacity === 3 ? '140px' : '100px')};
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
+  color: ${(props) => (props.isFull ? '#999' : 'inherit')};
 `;
 
 function Room({ id, name, capacity, guests, onAssignPerson, onUnassignPerson }) {
+  const isFull = guests.length >= capacity;
+
   const [{ isOver }, drop] = useDrop(
     () => ({
       accept: 'PERSON',
+      canDrop: () => !isFull,
       drop: (item) => {
         onAssignPerson(item.id, id);
       },
@@ -92,11 +95,11 @@ function Room({ id, name, capacity, guests, onAssignPerson, onUnassignPerson }) 
         isOver: !!monitor.isOver(),
       }),
     }),
-    [id, onAssignPerson],
+    [id, onAssignPerson, isFull],
   );
 
   return (
-    <RoomContainer isOver={isOver} capacity={capacity}>
+    <RoomContainer isOver={isOver} capacity={capacity} isFull={isFull}>
       <RoomHeader>
         <RoomName>{name}</RoomName>
         <RoomCapacity filled={guests.length} capacity={capacity}>
@@ -118,7 +121,9 @@ function Room({ id, name, capacity, guests, onAssignPerson, onUnassignPerson }) 
             />
           ))
         ) : (
-          <EmptyState capacity={capacity}>Trage invitații aici</EmptyState>
+          <EmptyState capacity={capacity} isFull={isFull}>
+            {isFull ? 'Camera este plină' : 'Trage invitații aici'}
+          </EmptyState>
         )}
       </GuestList>
     </RoomContainer>

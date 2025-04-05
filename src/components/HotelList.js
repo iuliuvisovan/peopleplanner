@@ -48,7 +48,7 @@ const HotelHeader = styled.div`
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
   cursor: pointer;
   transition: all 0.2s;
-  
+
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
@@ -74,7 +74,7 @@ const HeaderContent = styled.div`
 const ExpandIcon = styled.span`
   font-size: 1rem;
   transition: transform 0.3s;
-  transform: ${props => props.expanded ? 'rotate(180deg)' : 'rotate(0deg)'};
+  transform: ${(props) => (props.expanded ? 'rotate(180deg)' : 'rotate(0deg)')};
   color: #4a2500;
   opacity: 0.7;
 `;
@@ -82,18 +82,23 @@ const ExpandIcon = styled.span`
 const RoomsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+
   gap: 1rem;
   padding: 0 0.5rem;
-  max-height: ${props => props.expanded ? '2000px' : '0'};
+  margin-top: -4px;
+  padding-top: 4px;
+  max-height: ${(props) => (props.expanded ? '2000px' : '0')};
   overflow: hidden;
-  opacity: ${props => props.expanded ? '1' : '0'};
+  opacity: ${(props) => (props.expanded ? '1' : '0')};
   transition: max-height 0.4s ease-in-out, opacity 0.2s ease-in-out;
-  transition-delay: ${props => props.expanded ? '0s, 0.1s' : '0s, 0s'};
+  transition-delay: ${(props) => (props.expanded ? '0s, 0.1s' : '0s, 0s')};
 `;
 
 function HotelList({ hotels, onAssignPerson, onUnassignPerson }) {
-  // State to track which hotels are expanded
-  const [expandedHotels, setExpandedHotels] = useState({});
+  // State to track which hotels are expanded, with first hotel expanded by default
+  const [expandedHotels, setExpandedHotels] = useState({
+    h1: true // Set the first pensiune (Casa Mari) to be expanded by default
+  });
 
   const getHotelIcon = (hotelName) => {
     if (hotelName.includes('Elania')) return '🏨';
@@ -104,9 +109,9 @@ function HotelList({ hotels, onAssignPerson, onUnassignPerson }) {
   };
 
   const toggleHotelExpansion = (hotelId) => {
-    setExpandedHotels(prev => ({
+    setExpandedHotels((prev) => ({
       ...prev,
-      [hotelId]: !prev[hotelId]
+      [hotelId]: !prev[hotelId],
     }));
   };
 
@@ -121,9 +126,7 @@ function HotelList({ hotels, onAssignPerson, onUnassignPerson }) {
                 <HotelIcon>{getHotelIcon(hotel.name)}</HotelIcon>
                 <HotelName>{hotel.name}</HotelName>
               </HeaderContent>
-              <ExpandIcon expanded={expandedHotels[hotel.id]}>
-                ▼
-              </ExpandIcon>
+              <ExpandIcon expanded={expandedHotels[hotel.id]}>▼</ExpandIcon>
             </HotelHeader>
             <RoomsGrid expanded={expandedHotels[hotel.id]}>
               {hotel.rooms.map((room) => (
