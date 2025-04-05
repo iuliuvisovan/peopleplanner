@@ -23,25 +23,6 @@ const Title = styled.h2`
 const RoomsContainer = styled.div`
   overflow-y: auto;
   flex: 1;
-  
-  /* Custom scrollbar */
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
-  
-  &::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 4px;
-  }
-  
-  &::-webkit-scrollbar-thumb {
-    background: #c7d2fe;
-    border-radius: 4px;
-  }
-  
-  &::-webkit-scrollbar-thumb:hover {
-    background: #a5b4fc;
-  }
 `;
 
 function RoomList({ rooms, onAssignPerson, onUnassignPerson }) {
@@ -49,8 +30,8 @@ function RoomList({ rooms, onAssignPerson, onUnassignPerson }) {
     <Container>
       <Title>Available Rooms</Title>
       <RoomsContainer>
-        {rooms.map(room => (
-          <Room 
+        {rooms.map((room) => (
+          <Room
             key={room.id}
             id={room.id}
             name={room.name}

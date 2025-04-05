@@ -10,14 +10,14 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  border: 1px solid #ffbd59;
+  border: 1px solid #e0e6f0;
   overflow: hidden;
 `;
 
 const Title = styled.h2`
   margin-top: 0;
-  color: #ff8c42;
-  border-bottom: 2px solid #ffbd59;
+  color: #444240;
+  border-bottom: 2px solid #e0e6f0;
   padding-bottom: 0.75rem;
   margin-bottom: 1.25rem;
   font-family: 'Montserrat', sans-serif;
@@ -29,25 +29,6 @@ const HotelsContainer = styled.div`
   overflow-y: auto;
   flex: 1;
   padding-right: 0.5rem;
-  
-  /* Custom scrollbar */
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
-  
-  &::-webkit-scrollbar-track {
-    background: #fff2e6;
-    border-radius: 4px;
-  }
-  
-  &::-webkit-scrollbar-thumb {
-    background: #ffbd59;
-    border-radius: 4px;
-  }
-  
-  &::-webkit-scrollbar-thumb:hover {
-    background: #ff8c42;
-  }
 `;
 
 const HotelSection = styled.div`
@@ -55,7 +36,7 @@ const HotelSection = styled.div`
 `;
 
 const HotelHeader = styled.div`
-  background: linear-gradient(90deg, #ff8c42 0%, #ffbd59 100%);
+  background: linear-gradient(0, #efb73e, #ffcf66);
   color: #4a2500;
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
@@ -96,15 +77,15 @@ function HotelList({ hotels, onAssignPerson, onUnassignPerson }) {
     <Container>
       <Title>Cazare Disponibilă</Title>
       <HotelsContainer>
-        {hotels.map(hotel => (
+        {hotels.map((hotel) => (
           <HotelSection key={hotel.id}>
             <HotelHeader>
               <HotelIcon>{getHotelIcon(hotel.name)}</HotelIcon>
               <HotelName>{hotel.name}</HotelName>
             </HotelHeader>
             <RoomsGrid>
-              {hotel.rooms.map(room => (
-                <Room 
+              {hotel.rooms.map((room) => (
+                <Room
                   key={room.id}
                   id={room.id}
                   name={room.name}

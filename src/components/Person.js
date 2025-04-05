@@ -6,13 +6,13 @@ const PersonItem = styled.div`
   margin-bottom: 0.75rem;
   background-color: ${props => props.isDragging ? '#f7f9fc' : 'white'};
   border-radius: 0.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 0px 4px rgba(0, 0, 0, 0.26);
   cursor: grab;
   transition: all 0.2s ease;
   opacity: ${props => props.isDragging ? 0.5 : 1};
   border-left: 4px solid ${props => {
-    if (props.fromWho === 'groom') return '#4a7aff';
-    return props.inRoom ? '#ff9d66' : '#ffbd59';
+    return (props.fromWho === 'groom' ? '#1991d2' : '#e2a1ad');
+    // return props.inRoom ? 'green' : '#ffbd59';
   }};
   
   &:hover {

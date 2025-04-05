@@ -7,11 +7,13 @@ const RoomContainer = styled.div`
   border-radius: 0.5rem;
   padding: 1.25rem;
   margin-bottom: 1rem;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
   transition: all 0.2s;
   border: 1px solid #ffe0b2;
-  
-  ${props => props.isOver && `
+  background: hsl(41 98% 96% / 1);
+
+  ${(props) =>
+    props.isOver &&
+    `
     box-shadow: 0 0 0 2px #ffbd59, 0 4px 10px rgba(0, 0, 0, 0.12);
     transform: translateY(-2px);
     background-color: #fff8f0;
@@ -36,80 +38,71 @@ const RoomName = styled.h3`
 `;
 
 const RoomCapacity = styled.div`
-  background-color: ${props => {
+  background-color: ${(props) => {
     if (props.filled > props.capacity) return '#fff0e0';
     if (props.filled === props.capacity) return '#f0fff4';
     return '#fff2e6';
   }};
-  
-  color: #444240;
-  
+
+  color: hsl(39 87% 45% / 1);
+
   padding: 0.25rem 0.75rem;
   border-radius: 2rem;
   font-size: 0.875rem;
   font-weight: 600;
   font-family: 'Montserrat', sans-serif;
-  border: 1px solid #ffbf47;
+  border: 1px solid hsl(32 100% 75% / 1);
 `;
 
 const GuestList = styled.div`
   min-height: 100px;
-  background-color: ${props => props.isOver ? '#fff8f0' : 'transparent'};
+  background-color: ${(props) => (props.isOver ? '#fff8f0' : 'transparent')};
   border-radius: 0.25rem;
   transition: background-color 0.2s;
-  padding: ${props => props.isEmpty ? '0' : '0.5rem 0'};
+  padding: ${(props) => (props.isEmpty ? '0' : '0.5rem 0')};
 `;
 
 const EmptyState = styled.div`
-  color: #444240;
   text-align: center;
-  padding: 1.5rem;
-  border: 2px dashed #ffbf47;
-  border-radius: 0.25rem;
+  border: 2px dashed hsl(32 100% 73% / 1);
+  border-radius: 10px;
   font-style: italic;
-  background-color: #fff8f0;
+  background-color: #fff;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.9rem;
+  min-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 function Room({ id, name, capacity, guests, onAssignPerson, onUnassignPerson }) {
-  const [{ isOver }, drop] = useDrop(() => ({
-    accept: 'PERSON',
-    drop: (item) => {
-      onAssignPerson(item.id, id);
-    },
-    collect: (monitor) => ({
-      isOver: !!monitor.isOver(),
+  const [{ isOver }, drop] = useDrop(
+    () => ({
+      accept: 'PERSON',
+      drop: (item) => {
+        onAssignPerson(item.id, id);
+      },
+      collect: (monitor) => ({
+        isOver: !!monitor.isOver(),
+      }),
     }),
-  }), [id, onAssignPerson]);
+    [id, onAssignPerson],
+  );
 
   return (
     <RoomContainer isOver={isOver}>
       <RoomHeader>
         <RoomName>{name}</RoomName>
-        <RoomCapacity 
-          filled={guests.length} 
-          capacity={capacity}
-        >
+        <RoomCapacity filled={guests.length} capacity={capacity}>
           {guests.length}/{capacity}
         </RoomCapacity>
       </RoomHeader>
-      
-      <GuestList 
-        ref={drop} 
-        isOver={isOver}
-        isEmpty={guests.length === 0}
-      >
+
+      <GuestList ref={drop} isOver={isOver} isEmpty={guests.length === 0}>
         {guests.length > 0 ? (
-          guests.map(guest => (
-            <Person 
-              key={guest.id}
-              id={guest.id}
-              name={guest.name}
-              inRoom={true}
-              roomId={id}
-              onUnassign={onUnassignPerson}
-            />
+          guests.map((guest) => (
+            <Person key={guest.id} id={guest.id} name={guest.name} inRoom={true} roomId={id} onUnassign={onUnassignPerson} />
           ))
         ) : (
           <EmptyState>Trage invitații aici</EmptyState>

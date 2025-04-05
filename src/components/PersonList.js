@@ -11,6 +11,7 @@ const Container = styled.div`
   flex-direction: column;
   height: 100%;
   min-width: 300px;
+  flex: 0.5;
   border: 1px solid #e0e6f0;
   overflow: hidden;
 `;
@@ -18,37 +19,19 @@ const Container = styled.div`
 const Title = styled.h2`
   margin-top: 0;
   color: #444240;
-  border-bottom: 2px solid #ffbf47;
+  border-bottom: 2px solid #e0e6f0;
   padding-bottom: 0.75rem;
   margin-bottom: 1.25rem;
   font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.5px;
 `;
 
 const List = styled.div`
   overflow-y: auto;
   flex: 1;
-  padding-right: 0.5rem;
-  
-  /* Custom scrollbar */
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
-  
-  &::-webkit-scrollbar-track {
-    background: #f0f5ff;
-    border-radius: 4px;
-  }
-  
-  &::-webkit-scrollbar-thumb {
-    background: #b8c4d9;
-    border-radius: 4px;
-  }
-  
-  &::-webkit-scrollbar-thumb:hover {
-    background: #8da1c3;
-  }
+  padding: 16px 32px;
+  margin: -16px -32px;
 `;
 
 const EmptyState = styled.div`
@@ -68,15 +51,7 @@ function PersonList({ people }) {
       <Title>Invitați la Nuntă</Title>
       <List>
         {people.length > 0 ? (
-          people.map(person => (
-            <Person 
-              key={person.id}
-              id={person.id}
-              name={person.name}
-              fromWho={person.fromWho}
-              inRoom={false}
-            />
-          ))
+          people.map((person) => <Person key={person.id} id={person.id} name={person.name} fromWho={person.fromWho} inRoom={false} />)
         ) : (
           <EmptyState>Toți invitații au fost distribuiți!</EmptyState>
         )}

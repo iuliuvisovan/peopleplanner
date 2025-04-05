@@ -425,8 +425,7 @@ const AppContainer = styled.div`
 `;
 
 const Header = styled.header`
-  background: linear-gradient(135deg, #e89c6c 0%, #ffc178 100%);
-  color: #3c3224;
+  background: linear-gradient(0, #efb73e, #ffcf66);
   padding: 1.5rem;
   text-align: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -437,7 +436,6 @@ const HeaderTitle = styled.h1`
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   letter-spacing: 1px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.12);
 `;
 
 const MainContainer = styled.main`
@@ -527,7 +525,7 @@ function App() {
     <DndProvider backend={HTML5Backend}>
       <AppContainer>
         <Header>
-          <HeaderTitle>Planificarea Camerelor pentru Nuntă</HeaderTitle>
+          <HeaderTitle>💍 Planificarea Camerelor pentru Nuntă</HeaderTitle>
         </Header>
         <MainContainer>
           <PersonList people={unassignedPeople} />
