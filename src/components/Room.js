@@ -9,7 +9,9 @@ const RoomContainer = styled.div`
   margin-bottom: 1rem;
   transition: all 0.2s;
   border: 1px solid #ffe0b2;
-  background: hsl(41 98% 96% / 1);
+  background: hsl(41 98% 98% / 1);
+
+  height: ${(props) => (props.capacity === 3 ? '280px' : '222px')};
 
   ${(props) =>
     props.isOver &&
@@ -61,6 +63,7 @@ const GuestList = styled.div`
   border-radius: 0.25rem;
   transition: background-color 0.2s;
   padding: ${(props) => (props.isEmpty ? '0' : '0.5rem 0')};
+  height: calc(100% - 56px);
 `;
 
 const EmptyState = styled.div`
@@ -75,6 +78,7 @@ const EmptyState = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
 `;
 
 function Room({ id, name, capacity, guests, onAssignPerson, onUnassignPerson }) {
@@ -92,7 +96,7 @@ function Room({ id, name, capacity, guests, onAssignPerson, onUnassignPerson }) 
   );
 
   return (
-    <RoomContainer isOver={isOver}>
+    <RoomContainer isOver={isOver} capacity={capacity}>
       <RoomHeader>
         <RoomName>{name}</RoomName>
         <RoomCapacity filled={guests.length} capacity={capacity}>
@@ -103,7 +107,15 @@ function Room({ id, name, capacity, guests, onAssignPerson, onUnassignPerson }) 
       <GuestList ref={drop} isOver={isOver} isEmpty={guests.length === 0} capacity={capacity}>
         {guests.length > 0 ? (
           guests.map((guest) => (
-            <Person key={guest.id} id={guest.id} name={guest.name} inRoom={true} roomId={id} onUnassign={onUnassignPerson} fromWho={guest.fromWho} />
+            <Person
+              key={guest.id}
+              id={guest.id}
+              name={guest.name}
+              inRoom={true}
+              roomId={id}
+              onUnassign={onUnassignPerson}
+              fromWho={guest.fromWho}
+            />
           ))
         ) : (
           <EmptyState capacity={capacity}>Trage invitații aici</EmptyState>
