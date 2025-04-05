@@ -396,17 +396,17 @@ const AppContainer = styled.div`
 `;
 
 const Header = styled.header`
-  background: linear-gradient(0, hsl(41.02deg 84.69% 64%), #ffcf66);
-  padding: 1.5rem;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 0 32px;
+  padding-top: 24px;
+  font-weight: 600;
+  margin-bottom: -8px;
 `;
 
-const HeaderTitle = styled.h2`
+const HeaderTitle = styled.h1`
   margin: 0;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  letter-spacing: 1px;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
 `;
 
 const MainContainer = styled.main`
@@ -424,9 +424,7 @@ const MainContainer = styled.main`
 function App() {
   const [hotels, setHotels] = useState(accommodations);
   // Sort people by ID initially
-  const [unassignedPeople, setUnassignedPeople] = useState(
-    [...samplePeople].sort((a, b) => a.id.localeCompare(b.id))
-  );
+  const [unassignedPeople, setUnassignedPeople] = useState([...samplePeople].sort((a, b) => a.id.localeCompare(b.id)));
 
   const handleAssignPerson = useCallback(
     (personId, roomId) => {
@@ -440,9 +438,9 @@ function App() {
           // Check if the room belongs to this hotel
           const roomIndex = hotel.rooms.findIndex((room) => room.id === roomId);
           if (roomIndex === -1) return hotel;
-          
+
           const room = hotel.rooms[roomIndex];
-          
+
           // Check if room is already at capacity
           if (room.guests.length >= room.capacity) {
             return hotel; // Don't add if room is already full
@@ -458,15 +456,15 @@ function App() {
 
           return updatedHotel;
         });
-        
+
         // Check if any hotel was updated (guest was added to a room)
         const wasAdded = JSON.stringify(updatedHotels) !== JSON.stringify(prev);
-        
+
         // Only remove from unassigned list if the person was added to a room
         if (wasAdded) {
           setUnassignedPeople((prevPeople) => prevPeople.filter((p) => p.id !== personId));
         }
-        
+
         return updatedHotels;
       });
     },
@@ -517,7 +515,7 @@ function App() {
     <DndProvider backend={HTML5Backend}>
       <AppContainer>
         <Header>
-          <HeaderTitle>💍 Planificarea Camerelor pentru Nuntă</HeaderTitle>
+          <HeaderTitle>Planificarea Cazării la Nuntă 💍🏡</HeaderTitle>
         </Header>
         <MainContainer>
           <PersonList people={unassignedPeople} />
