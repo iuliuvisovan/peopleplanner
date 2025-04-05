@@ -87,14 +87,27 @@ function Room({ id, name, capacity, guests, onAssignPerson, onUnassignPerson }) 
   const [{ isOver }, drop] = useDrop(
     () => ({
       accept: ['PERSON', 'ASSIGNED_PERSON'],
-      canDrop: (item) => !isFull || (item.roomId && item.roomId !== id),
+      canDrop: (item) => {
+        // Allow drops if room is not full OR if moving from another room
+        return !isFull || (item.inRoom && item.roomId !== id);
+      },
       drop: (item) => {
-        if (item.roomId && item.roomId !== id) {
-          // Handle move from one room to another
-          onUnassignPerson(item.id, item.roomId);
-          onAssignPerson(item.id, id);
-        } else {
-          // Handle drop from person list
+        // Handle drop based on source
+        if (item.inRoom && item.roomId && item.roomId !== id) {
+          // IMPORTANT: When moving between rooms, we need to be very careful
+          // about the state update sequence
+          
+          // First, remove from the original room without adding to unassigned list
+          // Create a custom event to handle the room-to-room transfer
+          window.dispatchEvent(new CustomEvent('room-to-room-transfer', { 
+            detail: { 
+              personId: item.id, 
+              fromRoomId: item.roomId,
+              toRoomId: id
+            } 
+          }));
+        } else if (!item.inRoom) {
+          // For drops from the person list, just use the normal assign function
           onAssignPerson(item.id, id);
         }
       },

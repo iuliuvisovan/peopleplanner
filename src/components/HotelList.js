@@ -97,7 +97,7 @@ const RoomsGrid = styled.div`
 function HotelList({ hotels, onAssignPerson, onUnassignPerson }) {
   // State to track which hotels are expanded, with first hotel expanded by default
   const [expandedHotels, setExpandedHotels] = useState({
-    h1: true // Set the first pensiune (Casa Mari) to be expanded by default
+    1: true // Set the first pensiune (Casa Mari) to be expanded by default
   });
 
   const getHotelIcon = (hotelName) => {

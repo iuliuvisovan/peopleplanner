@@ -35,7 +35,14 @@ function Person({ id, name, inRoom, roomId, onUnassign, fromWho }) {
   const [{ isDragging }, drag] = useDrag(
     () => ({
       type: inRoom ? 'ASSIGNED_PERSON' : 'PERSON',
-      item: { id, name, roomId, fromWho },
+      item: { 
+        id, 
+        name, 
+        roomId, 
+        fromWho,
+        // Add a field to track if this person is already in a room
+        inRoom 
+      },
       collect: (monitor) => ({
         isDragging: !!monitor.isDragging(),
       }),
@@ -43,14 +50,13 @@ function Person({ id, name, inRoom, roomId, onUnassign, fromWho }) {
     [id, name, inRoom, roomId, fromWho],
   );
 
+  // Remove click handler functionality
   const handleClick = () => {
-    if (inRoom && onUnassign) {
-      onUnassign(id, roomId);
-    }
+    // No action on click
   };
 
   // Add hover title in Romanian
-  const title = inRoom ? 'Apasă pentru a elimina' : 'Trage pentru a atribui';
+  const title = inRoom ? 'Trage pentru a muta' : 'Trage pentru a atribui';
 
   return (
     <PersonItem ref={drag} isDragging={isDragging} onClick={handleClick} inRoom={inRoom} fromWho={fromWho} title={title}>
