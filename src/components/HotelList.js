@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import Room from './Room';
 
@@ -43,7 +44,15 @@ const HotelHeader = styled.div`
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: all 0.2s;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+  }
 `;
 
 const HotelName = styled.h3`
@@ -57,14 +66,35 @@ const HotelIcon = styled.span`
   font-size: 1.25rem;
 `;
 
+const HeaderContent = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const ExpandIcon = styled.span`
+  font-size: 1rem;
+  transition: transform 0.3s;
+  transform: ${props => props.expanded ? 'rotate(180deg)' : 'rotate(0deg)'};
+  color: #4a2500;
+  opacity: 0.7;
+`;
+
 const RoomsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1rem;
   padding: 0 0.5rem;
+  max-height: ${props => props.expanded ? '2000px' : '0'};
+  overflow: hidden;
+  opacity: ${props => props.expanded ? '1' : '0'};
+  transition: max-height 0.4s ease-in-out, opacity 0.2s ease-in-out;
+  transition-delay: ${props => props.expanded ? '0s, 0.1s' : '0s, 0s'};
 `;
 
 function HotelList({ hotels, onAssignPerson, onUnassignPerson }) {
+  // State to track which hotels are expanded
+  const [expandedHotels, setExpandedHotels] = useState({});
+
   const getHotelIcon = (hotelName) => {
     if (hotelName.includes('Elania')) return '🏨';
     if (hotelName.includes('Casa Mari')) return '🏡';
@@ -73,17 +103,29 @@ function HotelList({ hotels, onAssignPerson, onUnassignPerson }) {
     return '🏘️';
   };
 
+  const toggleHotelExpansion = (hotelId) => {
+    setExpandedHotels(prev => ({
+      ...prev,
+      [hotelId]: !prev[hotelId]
+    }));
+  };
+
   return (
     <Container>
       <Title>Cazare Disponibilă</Title>
       <HotelsContainer>
         {hotels.map((hotel) => (
           <HotelSection key={hotel.id}>
-            <HotelHeader>
-              <HotelIcon>{getHotelIcon(hotel.name)}</HotelIcon>
-              <HotelName>{hotel.name}</HotelName>
+            <HotelHeader onClick={() => toggleHotelExpansion(hotel.id)}>
+              <HeaderContent>
+                <HotelIcon>{getHotelIcon(hotel.name)}</HotelIcon>
+                <HotelName>{hotel.name}</HotelName>
+              </HeaderContent>
+              <ExpandIcon expanded={expandedHotels[hotel.id]}>
+                ▼
+              </ExpandIcon>
             </HotelHeader>
-            <RoomsGrid>
+            <RoomsGrid expanded={expandedHotels[hotel.id]}>
               {hotel.rooms.map((room) => (
                 <Room
                   key={room.id}
