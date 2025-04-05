@@ -86,16 +86,23 @@ function Room({ id, name, capacity, guests, onAssignPerson, onUnassignPerson }) 
 
   const [{ isOver }, drop] = useDrop(
     () => ({
-      accept: 'PERSON',
-      canDrop: () => !isFull,
+      accept: ['PERSON', 'ASSIGNED_PERSON'],
+      canDrop: (item) => !isFull || (item.roomId && item.roomId !== id),
       drop: (item) => {
-        onAssignPerson(item.id, id);
+        if (item.roomId && item.roomId !== id) {
+          // Handle move from one room to another
+          onUnassignPerson(item.id, item.roomId);
+          onAssignPerson(item.id, id);
+        } else {
+          // Handle drop from person list
+          onAssignPerson(item.id, id);
+        }
       },
       collect: (monitor) => ({
         isOver: !!monitor.isOver(),
       }),
     }),
-    [id, onAssignPerson, isFull],
+    [id, onAssignPerson, onUnassignPerson, isFull],
   );
 
   return (

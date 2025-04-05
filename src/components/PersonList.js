@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Person from './Person';
+import { useDrop } from 'react-dnd';
 
 const Container = styled.div`
   flex: 1;
@@ -14,6 +15,10 @@ const Container = styled.div`
   flex: 0.5;
   border: 1px solid #e0e6f0;
   overflow: hidden;
+  ${props => props.isOver && `
+    box-shadow: 0 0 0 2px #ffbd59, 0 4px 10px rgba(0, 0, 0, 0.12);
+    background-color: #fff8f0;
+  `}
 `;
 
 const Title = styled.h2`
@@ -46,8 +51,23 @@ const EmptyState = styled.div`
 `;
 
 function PersonList({ people }) {
+  const [{ isOver }, drop] = useDrop(() => ({
+    accept: 'ASSIGNED_PERSON',
+    drop: (item) => {
+      if (item.roomId) {
+        // Find the room to unassign from
+        window.dispatchEvent(new CustomEvent('unassign-person', { 
+          detail: { personId: item.id, roomId: item.roomId } 
+        }));
+      }
+    },
+    collect: (monitor) => ({
+      isOver: !!monitor.isOver(),
+    }),
+  }), []);
+
   return (
-    <Container>
+    <Container ref={drop} isOver={isOver}>
       <Title>Invitați</Title>
       <List>
         {people.length > 0 ? (

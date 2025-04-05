@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import styled from 'styled-components';
@@ -510,6 +510,21 @@ function App() {
       });
     }
   }, []);
+  
+  // Setup event listener for unassign events from PersonList
+  useEffect(() => {
+    const handleUnassignEvent = (event) => {
+      const { personId, roomId } = event.detail;
+      handleUnassignPerson(personId, roomId);
+    };
+    
+    window.addEventListener('unassign-person', handleUnassignEvent);
+    
+    // Cleanup
+    return () => {
+      window.removeEventListener('unassign-person', handleUnassignEvent);
+    };
+  }, [handleUnassignPerson]);
 
   return (
     <DndProvider backend={HTML5Backend}>
