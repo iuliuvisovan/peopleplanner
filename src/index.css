@@ -12,8 +12,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, #faf6e9 0%, #f5efd6 100%);
-  color: #4a3900;
+  background: linear-gradient(0deg, #ffbf80, #ff8833, #ffbf80);
+  color: #444240;
   font-weight: 400;
 }
 
@@ -32,6 +32,6 @@ code {
 }
 
 ::selection {
-  background-color: #d4af37;
+  background-color: #ffbf47;
   color: #ffffff;
 }

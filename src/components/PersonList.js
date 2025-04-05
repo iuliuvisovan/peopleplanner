@@ -17,8 +17,8 @@ const Container = styled.div`
 
 const Title = styled.h2`
   margin-top: 0;
-  color: #e88c55;
-  border-bottom: 2px solid #ffc178;
+  color: #444240;
+  border-bottom: 2px solid #ffbf47;
   padding-bottom: 0.75rem;
   margin-bottom: 1.25rem;
   font-family: 'Montserrat', sans-serif;
@@ -52,13 +52,13 @@ const List = styled.div`
 `;
 
 const EmptyState = styled.div`
-  color: #e88c55;
+  color: #444240;
   text-align: center;
   padding: 2rem;
   font-style: italic;
   background-color: #f7f9fc;
   border-radius: 0.5rem;
-  border: 2px dashed #b8c4d9;
+  border: 2px dashed #ffbf47;
   font-family: 'Montserrat', sans-serif;
 `;
 

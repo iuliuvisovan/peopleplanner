@@ -23,13 +23,13 @@ const RoomHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
-  border-bottom: 1px solid #ffbd59;
+  border-bottom: 1px solid #ffbf47;
   padding-bottom: 0.75rem;
 `;
 
 const RoomName = styled.h3`
   margin: 0;
-  color: #4a2500;
+  color: #444240;
   font-weight: 600;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.95rem;
@@ -42,22 +42,14 @@ const RoomCapacity = styled.div`
     return '#fff2e6';
   }};
   
-  color: ${props => {
-    if (props.filled > props.capacity) return '#9a3412';
-    if (props.filled === props.capacity) return '#047857';
-    return '#ff8c42';
-  }};
+  color: #444240;
   
   padding: 0.25rem 0.75rem;
   border-radius: 2rem;
   font-size: 0.875rem;
   font-weight: 600;
   font-family: 'Montserrat', sans-serif;
-  border: 1px solid ${props => {
-    if (props.filled > props.capacity) return '#fdba74';
-    if (props.filled === props.capacity) return '#34d399';
-    return '#ffbd59';
-  }};
+  border: 1px solid #ffbf47;
 `;
 
 const GuestList = styled.div`
@@ -69,10 +61,10 @@ const GuestList = styled.div`
 `;
 
 const EmptyState = styled.div`
-  color: #ff8c42;
+  color: #444240;
   text-align: center;
   padding: 1.5rem;
-  border: 2px dashed #ffbd59;
+  border: 2px dashed #ffbf47;
   border-radius: 0.25rem;
   font-style: italic;
   background-color: #fff8f0;

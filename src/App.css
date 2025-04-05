@@ -6,7 +6,7 @@
 
 body {
   font-family: 'Montserrat', sans-serif;
-  color: #3c3224;
+  color: #444240;
   background-color: #f7f9fc;
 }
 
@@ -25,7 +25,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #8da1c3;
+  background: #ffbf47;
 }
 
 /* Shimmer animation for elements */
@@ -40,7 +40,7 @@ body {
 
 /* Better focus styles for accessibility */
 *:focus {
-  outline: 2px solid #8da1c3;
+  outline: 2px solid #ffbf47;
   outline-offset: 2px;
 }
 

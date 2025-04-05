@@ -28,7 +28,7 @@ const PersonItem = styled.div`
 const PersonName = styled.p`
   margin: 0;
   font-weight: 500;
-  color: #3c3224;
+  color: #444240;
   font-family: 'Montserrat', sans-serif;
   letter-spacing: 0.2px;
 `;
