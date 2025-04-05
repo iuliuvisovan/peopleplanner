@@ -56,7 +56,7 @@ const RoomCapacity = styled.div`
 `;
 
 const GuestList = styled.div`
-  min-height: 100px;
+  min-height: ${(props) => (props.capacity === 3 ? '140px' : '100px')};
   background-color: ${(props) => (props.isOver ? '#fff8f0' : 'transparent')};
   border-radius: 0.25rem;
   transition: background-color 0.2s;
@@ -71,7 +71,7 @@ const EmptyState = styled.div`
   background-color: #fff;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.9rem;
-  min-height: 100px;
+  min-height: ${(props) => (props.capacity === 3 ? '140px' : '100px')};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -100,13 +100,13 @@ function Room({ id, name, capacity, guests, onAssignPerson, onUnassignPerson }) 
         </RoomCapacity>
       </RoomHeader>
 
-      <GuestList ref={drop} isOver={isOver} isEmpty={guests.length === 0}>
+      <GuestList ref={drop} isOver={isOver} isEmpty={guests.length === 0} capacity={capacity}>
         {guests.length > 0 ? (
           guests.map((guest) => (
             <Person key={guest.id} id={guest.id} name={guest.name} inRoom={true} roomId={id} onUnassign={onUnassignPerson} fromWho={guest.fromWho} />
           ))
         ) : (
-          <EmptyState>Trage invitații aici</EmptyState>
+          <EmptyState capacity={capacity}>Trage invitații aici</EmptyState>
         )}
       </GuestList>
     </RoomContainer>
