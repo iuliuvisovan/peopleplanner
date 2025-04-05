@@ -8,30 +8,345 @@ import HotelList from './components/HotelList';
 
 // Sample data with Romanian names - replace with your actual data
 const samplePeople = [
-  { id: 'p1', name: 'Ion Popescu' },
-  { id: 'p2', name: 'Maria Ionescu' },
-  { id: 'p3', name: 'Andrei Popa' },
-  { id: 'p4', name: 'Elena Dumitru' },
-  { id: 'p5', name: 'Mihai Stoica' },
-  { id: 'p6', name: 'Ana Constantinescu' },
-  { id: 'p7', name: 'Alexandru Diaconu' },
-  { id: 'p8', name: 'Cristina Moldovan' },
-  { id: 'p9', name: 'Bogdan Georgescu' },
-  { id: 'p10', name: 'Ioana Stancu' },
-  { id: 'p11', name: 'Florin Radu' },
-  { id: 'p12', name: 'Gabriela Munteanu' },
-  { id: 'p13', name: 'Radu Ștefănescu' },
-  { id: 'p14', name: 'Monica Vasilescu' },
-  { id: 'p15', name: 'Daniel Iliescu' },
-  { id: 'p16', name: 'Simona Toma' },
-  { id: 'p17', name: 'Adrian Marin' },
-  { id: 'p18', name: 'Ileana Cosma' },
-  { id: 'p19', name: 'George Dumitrescu' },
-  { id: 'p20', name: 'Alina Florescu' },
-  { id: 'p21', name: 'Victor Dragomir' },
-  { id: 'p22', name: 'Laura Manolache' },
-  { id: 'p23', name: 'Marius Niculescu' },
-  { id: 'p24', name: 'Diana Popovici' },
+  { id: 'g1', name: 'Danci Crina', fromWho: 'groom' },
+  { id: 'g2', name: 'Danci Andrei', fromWho: 'groom' },
+  { id: 'g3', name: 'Danci Mariana', fromWho: 'groom' },
+  { id: 'g4', name: 'Danci Vasile', fromWho: 'groom' },
+  { id: 'g5', name: 'Aurelia Visovan', fromWho: 'groom' },
+  { id: 'g6', name: 'Can Cakmur', fromWho: 'groom' },
+  { id: 'g7', name: 'Iulian Micnea', fromWho: 'groom' },
+  { id: 'g8', name: 'Iulian Micnea - iubita', fromWho: 'groom' },
+  { id: 'g9', name: 'Ramona Ardelean', fromWho: 'groom' },
+  { id: 'g10', name: 'Petrica Ardelean', fromWho: 'groom' },
+  { id: 'g11', name: 'Doina Balasz', fromWho: 'groom' },
+  { id: 'g12', name: 'Doina Radu - soț Radu Ilnițchi', fromWho: 'groom' },
+  { id: 'g13', name: 'Paul Balasz', fromWho: 'groom' },
+  { id: 'g14', name: 'Robert Balasz', fromWho: 'groom' },
+  { id: 'g15', name: 'Vasi Teleptean', fromWho: 'groom' },
+  { id: 'g16', name: 'Vasi Teleptean - logodnică', fromWho: 'groom' },
+  { id: 'g17', name: 'Hajdu Romina', fromWho: 'groom' },
+  { id: 'g18', name: 'Hajdu Istvan', fromWho: 'groom' },
+  { id: 'g19', name: 'Parintele Ardelean Cornel', fromWho: 'groom' },
+  { id: 'g20', name: 'Ardelean Niculina', fromWho: 'groom' },
+  { id: 'g21', name: 'Haidu Romulus (Romi)', fromWho: 'groom' },
+  { id: 'g22', name: 'Haidu Diana', fromWho: 'groom' },
+  { id: 'g23', name: 'Haidu Luca', fromWho: 'groom' },
+  { id: 'g24', name: 'Ovidiu Basanciuc', fromWho: 'groom' },
+  { id: 'g25', name: 'Ovidiu Basanciuc - sotia Ramona', fromWho: 'groom' },
+  { id: 'g26', name: 'Catalin Mursa', fromWho: 'groom' },
+  { id: 'g27', name: 'Nevasta lu Mursa', fromWho: 'groom' },
+  { id: 'g28', name: 'Spiridon Iulian Marian', fromWho: 'groom' },
+  { id: 'g29', name: 'Spiridon Iulian Marian - nevasta', fromWho: 'groom' },
+  { id: 'g30', name: 'Gelu Godjea', fromWho: 'groom' },
+  { id: 'g31', name: 'Flavia Godjea', fromWho: 'groom' },
+  {
+    id: 'p100',
+    name: 'Mirabela Gherasim',
+  },
+  {
+    id: 'p101',
+    name: 'Ionut a lu Mirabela',
+  },
+  {
+    id: 'p102',
+    name: 'Andreea Tarus',
+  },
+  {
+    id: 'p103',
+    name: 'Ilie a lu Andreea - Ilie Vieru',
+  },
+  {
+    id: 'p104',
+    name: 'Alexandra Ciobanu (Manolache)',
+  },
+  {
+    id: 'p105',
+    name: 'Gheorghita Ciobanu',
+  },
+  {
+    id: 'p106',
+    name: 'Daniel Rosca',
+  },
+  {
+    id: 'p107',
+    name: 'Teodora Angheluta',
+  },
+  {
+    id: 'p108',
+    name: 'George Vranceanu',
+  },
+  {
+    id: 'p109',
+    name: 'Iubita lu George',
+  },
+  {
+    id: 'p110',
+    name: 'Bogdan Iacob',
+  },
+  {
+    id: 'p111',
+    name: 'Partenera lu Bogdan Iacob',
+  },
+  {
+    id: 'p112',
+    name: 'Acatrinei Doina',
+  },
+  {
+    id: 'p113',
+    name: 'Acatrinei Doru',
+  },
+  {
+    id: 'p114',
+    name: 'Lipovanu Dorin',
+  },
+  {
+    id: 'p115',
+    name: 'Lipovanu Iustin copil',
+  },
+  {
+    id: 'p116',
+    name: 'Lipovanu Cristina',
+  },
+  {
+    id: 'p117',
+    name: 'Coca Martin - nume adev: Iuliana Constantiniu',
+  },
+  {
+    id: 'p118',
+    name: 'Sotul Cocai - nume adev Tudor Constantiniu',
+  },
+  {
+    id: 'p119',
+    name: 'Sulugiuc Roxana',
+  },
+  {
+    id: 'p120',
+    name: 'Sulugiuc Dragos',
+  },
+  {
+    id: 'p121',
+    name: 'Valerica Lucan',
+  },
+  {
+    id: 'p122',
+    name: 'iubitu lu valerica Costel Cilof',
+  },
+  {
+    id: 'p123',
+    name: 'Gelu Calin',
+  },
+  {
+    id: 'p124',
+    name: 'Valentina Calin',
+  },
+  {
+    id: 'p125',
+    name: 'Elena Martin',
+  },
+  {
+    id: 'p126',
+    name: 'Alexandra Lucan',
+  },
+  {
+    id: 'p127',
+    name: 'Alexandra Lucan - iubit',
+  },
+  {
+    id: 'p128',
+    name: 'Daniel Lucan',
+  },
+  {
+    id: 'p129',
+    name: 'Iubita lu Daniel Lucan',
+  },
+  {
+    id: 'p130',
+    name: 'Lucan Lenuța',
+  },
+  {
+    id: 'p131',
+    name: 'Lucan Petrisor',
+  },
+  {
+    id: 'p132',
+    name: 'Gabi Martin',
+  },
+  {
+    id: 'p133',
+    name: 'Calina Martin',
+  },
+  {
+    id: 'p134',
+    name: 'Lavinia Amarculesei',
+  },
+  {
+    id: 'p135',
+    name: 'Lavinia Amarculesei - iubit',
+  },
+  {
+    id: 'p136',
+    name: 'Iuliana Tutuianu (Axinte)',
+  },
+  {
+    id: 'p137',
+    name: 'Ovidiu Tutuianu',
+  },
+  {
+    id: 'p138',
+    name: 'Malina Ostafi',
+  },
+  {
+    id: 'p139',
+    name: 'Marius Ostafi',
+  },
+  {
+    id: 'p140',
+    name: 'Raluca Rebegia  - ex Pavel',
+  },
+  {
+    id: 'p141',
+    name: 'Alin Rebegia  - a lu Raluca',
+  },
+  {
+    id: 'p142',
+    name: 'Gabriela Mandric (Andrioaie)',
+  },
+  {
+    id: 'p143',
+    name: 'Catalin Mandric',
+  },
+  {
+    id: 'p144',
+    name: 'Alexandru Archip',
+  },
+  {
+    id: 'p145',
+    name: 'Cristina Archip',
+  },
+  {
+    id: 'p146',
+    name: 'Luca Petrica',
+  },
+  {
+    id: 'p147',
+    name: 'Luca Marinela',
+  },
+  {
+    id: 'p148',
+    name: 'Anechitoaie Cristian',
+  },
+  {
+    id: 'p149',
+    name: 'Anechitoaie Mariana',
+  },
+  {
+    id: 'p150',
+    name: 'Galbin Gheorghe',
+  },
+  {
+    id: 'p151',
+    name: 'Galbin Anisoara',
+  },
+  {
+    id: 'p152',
+    name: 'Mihaela Matase',
+  },
+  {
+    id: 'p153',
+    name: 'Puiu Matase',
+  },
+  {
+    id: 'p154',
+    name: 'Elena Palade',
+  },
+  {
+    id: 'p155',
+    name: 'Razvan Livadariu',
+  },
+  {
+    id: 'p156',
+    name: 'Cristina Esanu - nume adev Cristina Marinela Balmuș',
+  },
+  {
+    id: 'p157',
+    name: 'Sotu lu Cristina Esanu - Ionut Balmuș',
+  },
+  {
+    id: 'p158',
+    name: 'Mihaela Chelciuc',
+  },
+  {
+    id: 'p159',
+    name: 'Iubitul lui Mihaela Bogdan - aka Bogdan Agache',
+  },
+  {
+    id: 'p160',
+    name: 'Inbal Matityahu',
+  },
+  {
+    id: 'p161',
+    name: 'Andrei Roba',
+  },
+  {
+    id: 'p162',
+    name: 'Razvan Serbanescu',
+  },
+  {
+    id: 'p163',
+    name: 'Sotia lu Razvan Serbanescu',
+  },
+  {
+    id: 'p164',
+    name: 'Ana Detot',
+  },
+  {
+    id: 'p165',
+    name: 'Andrei Detot',
+  },
+  {
+    id: 'p166',
+    name: 'Iubitu lu Codruta',
+  },
+  {
+    id: 'p167',
+    name: 'Iulia Pascariuc',
+  },
+  {
+    id: 'p168',
+    name: 'Ionut Pascariuc',
+  },
+  {
+    id: 'p169',
+    name: 'Codruta Cenan',
+  },
+  {
+    id: 'p170',
+    name: 'Cosmin Cosma',
+  },
+  {
+    id: 'p171',
+    name: 'Ovidiu Istrate',
+  },
+  {
+    id: 'p172',
+    name: 'Iubita lu Ovidiu Istrate',
+  },
+  {
+    id: 'p173',
+    name: 'Bogdan Bîtfoi',
+  },
+  {
+    id: 'p174',
+    name: 'Denisa Pîrvu',
+  },
+  {
+    id: 'p175',
+    name: 'Bianca Lazarciuc',
+  },
+  {
+    id: 'p176',
+    name: 'Bodgan Lazarciuc',
+  },
 ];
 
 // Cazari hardcodate in ordine: mai intai pensiunile, apoi hotelurile
@@ -44,8 +359,8 @@ const accommodations = [
       { id: 'casa-mari-double-1', name: 'Camera Dublă 1', capacity: 2, guests: [] },
       { id: 'casa-mari-double-2', name: 'Camera Dublă 2', capacity: 2, guests: [] },
       { id: 'casa-mari-triple-1', name: 'Camera Triplă 1', capacity: 3, guests: [] },
-      { id: 'casa-mari-triple-2', name: 'Camera Triplă 2', capacity: 3, guests: [] }
-    ]
+      { id: 'casa-mari-triple-2', name: 'Camera Triplă 2', capacity: 3, guests: [] },
+    ],
   },
   {
     id: 'h2',
@@ -57,8 +372,8 @@ const accommodations = [
       { id: 'view-double-4', name: 'Camera Dublă 4', capacity: 2, guests: [] },
       { id: 'view-double-5', name: 'Camera Dublă 5', capacity: 2, guests: [] },
       { id: 'view-double-6', name: 'Camera Dublă 6', capacity: 2, guests: [] },
-      { id: 'view-double-7', name: 'Camera Dublă 7', capacity: 2, guests: [] }
-    ]
+      { id: 'view-double-7', name: 'Camera Dublă 7', capacity: 2, guests: [] },
+    ],
   },
   {
     id: 'h3',
@@ -67,8 +382,8 @@ const accommodations = [
       { id: 'faget-double-1', name: 'Camera Dublă 1', capacity: 2, guests: [] },
       { id: 'faget-double-2', name: 'Camera Dublă 2', capacity: 2, guests: [] },
       { id: 'faget-triple-1', name: 'Camera Triplă 1', capacity: 3, guests: [] },
-      { id: 'faget-triple-2', name: 'Camera Triplă 2', capacity: 3, guests: [] }
-    ]
+      { id: 'faget-triple-2', name: 'Camera Triplă 2', capacity: 3, guests: [] },
+    ],
   },
   // Apoi hotelurile
   {
@@ -96,9 +411,9 @@ const accommodations = [
       { id: 'elania-twin-2', name: 'Camera Twin 2', capacity: 2, guests: [] },
       { id: 'elania-twin-3', name: 'Camera Twin 3', capacity: 2, guests: [] },
       { id: 'elania-twin-4', name: 'Camera Twin 4', capacity: 2, guests: [] },
-      { id: 'elania-twin-5', name: 'Camera Twin 5', capacity: 2, guests: [] }
-    ]
-  }
+      { id: 'elania-twin-5', name: 'Camera Twin 5', capacity: 2, guests: [] },
+    ],
+  },
 ];
 
 const AppContainer = styled.div`
@@ -141,63 +456,70 @@ function App() {
   const [hotels, setHotels] = useState(accommodations);
   const [unassignedPeople, setUnassignedPeople] = useState(samplePeople);
 
-  const handleAssignPerson = useCallback((personId, roomId) => {
-    // Find the person
-    const person = unassignedPeople.find(p => p.id === personId);
-    if (!person) return;
+  const handleAssignPerson = useCallback(
+    (personId, roomId) => {
+      // Find the person
+      const person = unassignedPeople.find((p) => p.id === personId);
+      if (!person) return;
 
-    // Remove from unassigned list
-    setUnassignedPeople(prev => prev.filter(p => p.id !== personId));
+      // Remove from unassigned list
+      setUnassignedPeople((prev) => prev.filter((p) => p.id !== personId));
 
-    // Add to room
-    setHotels(prev => prev.map(hotel => {
-      // Check if the room belongs to this hotel
-      const roomIndex = hotel.rooms.findIndex(room => room.id === roomId);
-      if (roomIndex === -1) return hotel;
+      // Add to room
+      setHotels((prev) =>
+        prev.map((hotel) => {
+          // Check if the room belongs to this hotel
+          const roomIndex = hotel.rooms.findIndex((room) => room.id === roomId);
+          if (roomIndex === -1) return hotel;
 
-      // Clone the hotel and its rooms
-      const updatedHotel = { ...hotel, rooms: [...hotel.rooms] };
-      // Update the specific room
-      updatedHotel.rooms[roomIndex] = {
-        ...updatedHotel.rooms[roomIndex],
-        guests: [...updatedHotel.rooms[roomIndex].guests, person]
-      };
+          // Clone the hotel and its rooms
+          const updatedHotel = { ...hotel, rooms: [...hotel.rooms] };
+          // Update the specific room
+          updatedHotel.rooms[roomIndex] = {
+            ...updatedHotel.rooms[roomIndex],
+            guests: [...updatedHotel.rooms[roomIndex].guests, person],
+          };
 
-      return updatedHotel;
-    }));
-  }, [unassignedPeople]);
+          return updatedHotel;
+        }),
+      );
+    },
+    [unassignedPeople],
+  );
 
   const handleUnassignPerson = useCallback((personId, roomId) => {
     // Find the hotel and room
     let foundPerson = null;
 
-    setHotels(prev => prev.map(hotel => {
-      // Check if the room belongs to this hotel
-      const roomIndex = hotel.rooms.findIndex(room => room.id === roomId);
-      if (roomIndex === -1) return hotel;
+    setHotels((prev) =>
+      prev.map((hotel) => {
+        // Check if the room belongs to this hotel
+        const roomIndex = hotel.rooms.findIndex((room) => room.id === roomId);
+        if (roomIndex === -1) return hotel;
 
-      // Find the person in the room
-      const room = hotel.rooms[roomIndex];
-      const personIndex = room.guests.findIndex(p => p.id === personId);
-      if (personIndex === -1) return hotel;
+        // Find the person in the room
+        const room = hotel.rooms[roomIndex];
+        const personIndex = room.guests.findIndex((p) => p.id === personId);
+        if (personIndex === -1) return hotel;
 
-      // Save reference to the person we're removing
-      foundPerson = room.guests[personIndex];
+        // Save reference to the person we're removing
+        foundPerson = room.guests[personIndex];
 
-      // Clone the hotel and its rooms
-      const updatedHotel = { ...hotel, rooms: [...hotel.rooms] };
-      // Update the specific room to remove the person
-      updatedHotel.rooms[roomIndex] = {
-        ...room,
-        guests: room.guests.filter(p => p.id !== personId)
-      };
+        // Clone the hotel and its rooms
+        const updatedHotel = { ...hotel, rooms: [...hotel.rooms] };
+        // Update the specific room to remove the person
+        updatedHotel.rooms[roomIndex] = {
+          ...room,
+          guests: room.guests.filter((p) => p.id !== personId),
+        };
 
-      return updatedHotel;
-    }));
+        return updatedHotel;
+      }),
+    );
 
     // Add the person back to unassigned list if we found them
     if (foundPerson) {
-      setUnassignedPeople(prev => [...prev, foundPerson]);
+      setUnassignedPeople((prev) => [...prev, foundPerson]);
     }
   }, []);
 
@@ -208,14 +530,8 @@ function App() {
           <HeaderTitle>Planificarea Camerelor pentru Nuntă</HeaderTitle>
         </Header>
         <MainContainer>
-          <PersonList 
-            people={unassignedPeople} 
-          />
-          <HotelList 
-            hotels={hotels} 
-            onAssignPerson={handleAssignPerson}
-            onUnassignPerson={handleUnassignPerson}
-          />
+          <PersonList people={unassignedPeople} />
+          <HotelList hotels={hotels} onAssignPerson={handleAssignPerson} onUnassignPerson={handleUnassignPerson} />
         </MainContainer>
       </AppContainer>
     </DndProvider>
