@@ -34,72 +34,69 @@ const samplePeople = [
   { id: 'p24', name: 'Diana Popovici' },
 ];
 
-// Real accommodation data from user input - reordered as requested
+// Cazari hardcodate in ordine: mai intai pensiunile, apoi hotelurile
 const accommodations = [
+  // Mai intai pensiunile
   {
     id: 'h1',
     name: 'Pensiunea "Casa Mari"',
     rooms: [
-      ...Array(2).fill().map((_, i) => ({
-        id: `casa-mari-double-${i+1}`,
-        name: `Camera Dublă ${i+1}`,
-        capacity: 2,
-        guests: []
-      })),
-      ...Array(2).fill().map((_, i) => ({
-        id: `casa-mari-triple-${i+1}`,
-        name: `Camera Triplă ${i+1}`,
-        capacity: 3,
-        guests: []
-      }))
+      { id: 'casa-mari-double-1', name: 'Camera Dublă 1', capacity: 2, guests: [] },
+      { id: 'casa-mari-double-2', name: 'Camera Dublă 2', capacity: 2, guests: [] },
+      { id: 'casa-mari-triple-1', name: 'Camera Triplă 1', capacity: 3, guests: [] },
+      { id: 'casa-mari-triple-2', name: 'Camera Triplă 2', capacity: 3, guests: [] }
     ]
   },
   {
     id: 'h2',
     name: 'Pensiunea "View"',
     rooms: [
-      ...Array(7).fill().map((_, i) => ({
-        id: `view-double-${i+1}`,
-        name: `Camera Dublă ${i+1}`,
-        capacity: 2,
-        guests: []
-      }))
+      { id: 'view-double-1', name: 'Camera Dublă 1', capacity: 2, guests: [] },
+      { id: 'view-double-2', name: 'Camera Dublă 2', capacity: 2, guests: [] },
+      { id: 'view-double-3', name: 'Camera Dublă 3', capacity: 2, guests: [] },
+      { id: 'view-double-4', name: 'Camera Dublă 4', capacity: 2, guests: [] },
+      { id: 'view-double-5', name: 'Camera Dublă 5', capacity: 2, guests: [] },
+      { id: 'view-double-6', name: 'Camera Dublă 6', capacity: 2, guests: [] },
+      { id: 'view-double-7', name: 'Camera Dublă 7', capacity: 2, guests: [] }
     ]
   },
   {
     id: 'h3',
     name: 'Pensiunea "Casa Făget"',
     rooms: [
-      ...Array(2).fill().map((_, i) => ({
-        id: `faget-double-${i+1}`,
-        name: `Camera Dublă ${i+1}`,
-        capacity: 2,
-        guests: []
-      })),
-      ...Array(2).fill().map((_, i) => ({
-        id: `faget-triple-${i+1}`,
-        name: `Camera Triplă ${i+1}`,
-        capacity: 3,
-        guests: []
-      }))
+      { id: 'faget-double-1', name: 'Camera Dublă 1', capacity: 2, guests: [] },
+      { id: 'faget-double-2', name: 'Camera Dublă 2', capacity: 2, guests: [] },
+      { id: 'faget-triple-1', name: 'Camera Triplă 1', capacity: 3, guests: [] },
+      { id: 'faget-triple-2', name: 'Camera Triplă 2', capacity: 3, guests: [] }
     ]
   },
+  // Apoi hotelurile
   {
     id: 'h4',
     name: 'Hotel "Elania Resort"',
     rooms: [
-      ...Array(17).fill().map((_, i) => ({
-        id: `elania-double-${i+1}`,
-        name: `Camera Dublă ${i+1}`,
-        capacity: 2,
-        guests: []
-      })),
-      ...Array(5).fill().map((_, i) => ({
-        id: `elania-twin-${i+1}`,
-        name: `Camera Twin ${i+1}`,
-        capacity: 2,
-        guests: []
-      }))
+      { id: 'elania-double-1', name: 'Camera Dublă 1', capacity: 2, guests: [] },
+      { id: 'elania-double-2', name: 'Camera Dublă 2', capacity: 2, guests: [] },
+      { id: 'elania-double-3', name: 'Camera Dublă 3', capacity: 2, guests: [] },
+      { id: 'elania-double-4', name: 'Camera Dublă 4', capacity: 2, guests: [] },
+      { id: 'elania-double-5', name: 'Camera Dublă 5', capacity: 2, guests: [] },
+      { id: 'elania-double-6', name: 'Camera Dublă 6', capacity: 2, guests: [] },
+      { id: 'elania-double-7', name: 'Camera Dublă 7', capacity: 2, guests: [] },
+      { id: 'elania-double-8', name: 'Camera Dublă 8', capacity: 2, guests: [] },
+      { id: 'elania-double-9', name: 'Camera Dublă 9', capacity: 2, guests: [] },
+      { id: 'elania-double-10', name: 'Camera Dublă 10', capacity: 2, guests: [] },
+      { id: 'elania-double-11', name: 'Camera Dublă 11', capacity: 2, guests: [] },
+      { id: 'elania-double-12', name: 'Camera Dublă 12', capacity: 2, guests: [] },
+      { id: 'elania-double-13', name: 'Camera Dublă 13', capacity: 2, guests: [] },
+      { id: 'elania-double-14', name: 'Camera Dublă 14', capacity: 2, guests: [] },
+      { id: 'elania-double-15', name: 'Camera Dublă 15', capacity: 2, guests: [] },
+      { id: 'elania-double-16', name: 'Camera Dublă 16', capacity: 2, guests: [] },
+      { id: 'elania-double-17', name: 'Camera Dublă 17', capacity: 2, guests: [] },
+      { id: 'elania-twin-1', name: 'Camera Twin 1', capacity: 2, guests: [] },
+      { id: 'elania-twin-2', name: 'Camera Twin 2', capacity: 2, guests: [] },
+      { id: 'elania-twin-3', name: 'Camera Twin 3', capacity: 2, guests: [] },
+      { id: 'elania-twin-4', name: 'Camera Twin 4', capacity: 2, guests: [] },
+      { id: 'elania-twin-5', name: 'Camera Twin 5', capacity: 2, guests: [] }
     ]
   }
 ];
