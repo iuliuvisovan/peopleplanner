@@ -420,24 +420,24 @@ const AppContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: #fff8f0;
+  background-color: #f7f9fc;
   font-family: 'Montserrat', sans-serif;
 `;
 
 const Header = styled.header`
-  background: linear-gradient(135deg, #ff8c42 0%, #ffbd59 100%);
-  color: #4a2500;
+  background: linear-gradient(135deg, #e89c6c 0%, #ffc178 100%);
+  color: #3c3224;
   padding: 1.5rem;
   text-align: center;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 `;
 
 const HeaderTitle = styled.h1`
   margin: 0;
   font-family: 'Montserrat', sans-serif;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 1px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.12);
 `;
 
 const MainContainer = styled.main`

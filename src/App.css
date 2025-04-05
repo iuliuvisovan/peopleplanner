@@ -7,7 +7,7 @@
 body {
   font-family: 'Montserrat', sans-serif;
   color: #3c3224;
-  background-color: #fcfaf5;
+  background-color: #f7f9fc;
 }
 
 ::-webkit-scrollbar {
@@ -15,21 +15,21 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #fcfaf5;
+  background: #f7f9fc;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c0a87e;
+  background: #b8c4d9;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #9c8d6e;
+  background: #8da1c3;
 }
 
-/* Gold shimmer animation for elements */
-@keyframes goldShimmer {
+/* Shimmer animation for elements */
+@keyframes shimmer {
   0% {
     background-position: -100% 0;
   }
@@ -40,7 +40,7 @@ body {
 
 /* Better focus styles for accessibility */
 *:focus {
-  outline: 2px solid #c0a87e;
+  outline: 2px solid #8da1c3;
   outline-offset: 2px;
 }
 
