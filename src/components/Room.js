@@ -7,14 +7,14 @@ const RoomContainer = styled.div`
   border-radius: 0.5rem;
   padding: 1.25rem;
   margin-bottom: 1rem;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
   transition: all 0.2s;
-  border: 1px solid #f0e6ba;
+  border: 1px solid #ffe0b2;
   
   ${props => props.isOver && `
-    box-shadow: 0 0 0 2px #d4af37, 0 4px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 0 2px #ffbd59, 0 4px 10px rgba(0, 0, 0, 0.12);
     transform: translateY(-2px);
-    background-color: #faf9f0;
+    background-color: #fff8f0;
   `}
 `;
 
@@ -23,13 +23,13 @@ const RoomHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
-  border-bottom: 1px solid #d4af37;
+  border-bottom: 1px solid #ffbd59;
   padding-bottom: 0.75rem;
 `;
 
 const RoomName = styled.h3`
   margin: 0;
-  color: #4a3900;
+  color: #4a2500;
   font-weight: 600;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.95rem;
@@ -39,13 +39,13 @@ const RoomCapacity = styled.div`
   background-color: ${props => {
     if (props.filled > props.capacity) return '#fff0e0';
     if (props.filled === props.capacity) return '#f0fff4';
-    return '#fef8e0';
+    return '#fff2e6';
   }};
   
   color: ${props => {
     if (props.filled > props.capacity) return '#9a3412';
     if (props.filled === props.capacity) return '#047857';
-    return '#805e00';
+    return '#ff8c42';
   }};
   
   padding: 0.25rem 0.75rem;
@@ -56,26 +56,26 @@ const RoomCapacity = styled.div`
   border: 1px solid ${props => {
     if (props.filled > props.capacity) return '#fdba74';
     if (props.filled === props.capacity) return '#34d399';
-    return '#d4af37';
+    return '#ffbd59';
   }};
 `;
 
 const GuestList = styled.div`
   min-height: 100px;
-  background-color: ${props => props.isOver ? '#faf9f0' : 'transparent'};
+  background-color: ${props => props.isOver ? '#fff8f0' : 'transparent'};
   border-radius: 0.25rem;
   transition: background-color 0.2s;
   padding: ${props => props.isEmpty ? '0' : '0.5rem 0'};
 `;
 
 const EmptyState = styled.div`
-  color: #b8860b;
+  color: #ff8c42;
   text-align: center;
   padding: 1.5rem;
-  border: 2px dashed #d4af37;
+  border: 2px dashed #ffbd59;
   border-radius: 0.25rem;
   font-style: italic;
-  background-color: #faf9f0;
+  background-color: #fff8f0;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.9rem;
 `;

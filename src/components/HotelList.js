@@ -6,18 +6,18 @@ const Container = styled.div`
   background-color: white;
   border-radius: 0.75rem;
   padding: 1.5rem;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
   height: 100%;
-  border: 1px solid #d4af37;
+  border: 1px solid #ffbd59;
   overflow: hidden;
 `;
 
 const Title = styled.h2`
   margin-top: 0;
-  color: #b8860b;
-  border-bottom: 2px solid #d4af37;
+  color: #ff8c42;
+  border-bottom: 2px solid #ffbd59;
   padding-bottom: 0.75rem;
   margin-bottom: 1.25rem;
   font-family: 'Montserrat', sans-serif;
@@ -36,17 +36,17 @@ const HotelsContainer = styled.div`
   }
   
   &::-webkit-scrollbar-track {
-    background: #faf6e9;
+    background: #fff2e6;
     border-radius: 4px;
   }
   
   &::-webkit-scrollbar-thumb {
-    background: #d4af37;
+    background: #ffbd59;
     border-radius: 4px;
   }
   
   &::-webkit-scrollbar-thumb:hover {
-    background: #b8860b;
+    background: #ff8c42;
   }
 `;
 
@@ -55,14 +55,14 @@ const HotelSection = styled.div`
 `;
 
 const HotelHeader = styled.div`
-  background: linear-gradient(90deg, #d4af37 0%, #f5d76e 100%);
-  color: #4a3900;
+  background: linear-gradient(90deg, #ff8c42 0%, #ffbd59 100%);
+  color: #4a2500;
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
 `;
 
 const HotelName = styled.h3`

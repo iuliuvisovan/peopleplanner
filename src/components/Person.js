@@ -4,25 +4,25 @@ import styled from 'styled-components';
 const PersonItem = styled.div`
   padding: 1rem;
   margin-bottom: 0.75rem;
-  background-color: ${props => props.isDragging ? '#faf9f0' : 'white'};
+  background-color: ${props => props.isDragging ? '#fff8f0' : 'white'};
   border-radius: 0.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
   cursor: grab;
   transition: all 0.2s ease;
   opacity: ${props => props.isDragging ? 0.5 : 1};
-  border-left: 4px solid ${props => props.inRoom ? '#b8860b' : '#d4af37'};
+  border-left: 4px solid ${props => props.inRoom ? '#ff8c42' : '#ffbd59'};
   
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
-    background-color: ${props => props.inRoom ? '#faf9f0' : '#fefbf0'};
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: ${props => props.inRoom ? '#fff8f0' : '#fff2e6'};
   }
 `;
 
 const PersonName = styled.p`
   margin: 0;
   font-weight: 500;
-  color: #4a3900;
+  color: #4a2500;
   font-family: 'Montserrat', sans-serif;
   letter-spacing: 0.2px;
 `;

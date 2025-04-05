@@ -105,16 +105,16 @@ const AppContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: #faf6e9;
+  background-color: #fff8f0;
   font-family: 'Montserrat', sans-serif;
 `;
 
 const Header = styled.header`
-  background: linear-gradient(135deg, #d4af37 0%, #f5d76e 100%);
-  color: #4a3900;
+  background: linear-gradient(135deg, #ff8c42 0%, #ffbd59 100%);
+  color: #4a2500;
   padding: 1.5rem;
   text-align: center;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 `;
 
 const HeaderTitle = styled.h1`
