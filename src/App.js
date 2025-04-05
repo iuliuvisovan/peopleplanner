@@ -30,14 +30,17 @@ const invitees = [
   { id: 21, name: 'Haidu Romulus (Romi)', fromWho: 'groom' },
   { id: 22, name: 'Haidu Diana', fromWho: 'groom' },
   { id: 23, name: 'Haidu Luca', fromWho: 'groom' },
-  { id: 24, name: 'Ovidiu Basanciuc', fromWho: 'groom' },
-  { id: 25, name: 'Ovidiu Basanciuc - sotia Ramona', fromWho: 'groom' },
-  { id: 26, name: 'Catalin Mursa', fromWho: 'groom' },
-  { id: 27, name: 'Nevasta lu Mursa', fromWho: 'groom' },
+  { id: 24, name: 'Basanciuc Ovidiu', fromWho: 'groom' },
+  { id: 25, name: 'Basanciuc Ramona', fromWho: 'groom' },
+  { id: 26, name: 'Mursa Catalin', fromWho: 'groom' },
+  { id: 27, name: 'Mursa (Turcan) Valentina', fromWho: 'groom' },
   { id: 28, name: 'Spiridon Iulian', fromWho: 'groom' },
-  { id: 29, name: 'Spiridon Iulian - nevasta', fromWho: 'groom' },
+  { id: 29, name: 'Spiridon (Chifor) Ionela', fromWho: 'groom' },
   { id: 30, name: 'Gelu Godjea', fromWho: 'groom' },
   { id: 31, name: 'Flavia Godjea', fromWho: 'groom' },
+  { id: 97, name: 'Timoftoaie Georgiana' },
+  { id: 98, name: 'Timoftoaie Petru' },
+  { id: 99, name: 'Timoftoaie Leonardo' },
   { id: 100, name: 'Mirabela Gherasim' },
   {
     id: 101,
@@ -450,55 +453,53 @@ function App() {
       // Try to load saved guest assignments
       const savedGuestAssignments = localStorage.getItem('guestAssignments');
       const savedUnassignedPeopleIds = localStorage.getItem('unassignedPeopleIds');
-      
+
       if (savedGuestAssignments && savedUnassignedPeopleIds) {
         // Parse the saved guest assignments
         const guestAssignments = JSON.parse(savedGuestAssignments);
         const unassignedIds = JSON.parse(savedUnassignedPeopleIds);
-        
+
         // Create a map of all invitees for quick lookup
         const inviteesMap = {};
-        invitees.forEach(person => {
+        invitees.forEach((person) => {
           inviteesMap[person.id] = person;
         });
-        
+
         // Start with the default accommodations structure
-        const hotelsWithSavedGuests = accommodations.map(hotel => {
+        const hotelsWithSavedGuests = accommodations.map((hotel) => {
           // Create a deep copy of the hotel
           const hotelCopy = { ...hotel, rooms: [...hotel.rooms] };
-          
+
           // For each room in the hotel, find and apply saved guest assignments
-          hotelCopy.rooms = hotelCopy.rooms.map(room => {
+          hotelCopy.rooms = hotelCopy.rooms.map((room) => {
             // Look for saved guests for this room
-            const savedRoom = guestAssignments.find(item => item.roomId === room.id);
-            
+            const savedRoom = guestAssignments.find((item) => item.roomId === room.id);
+
             if (savedRoom && savedRoom.guestIds && savedRoom.guestIds.length > 0) {
               // Map guest IDs to full guest objects from invitees array
-              const guests = savedRoom.guestIds
-                .map(id => inviteesMap[id])
-                .filter(guest => guest !== undefined); // Filter out any missing guests
-              
+              const guests = savedRoom.guestIds.map((id) => inviteesMap[id]).filter((guest) => guest !== undefined); // Filter out any missing guests
+
               return {
                 ...room,
-                guests: guests
+                guests: guests,
               };
             } else {
               return { ...room, guests: [] };
             }
           });
-          
+
           return hotelCopy;
         });
-        
+
         // Map unassigned IDs to full invitee objects
         const unassignedPeople = unassignedIds
-          .map(id => inviteesMap[id])
-          .filter(person => person !== undefined) // Filter out any missing people
+          .map((id) => inviteesMap[id])
+          .filter((person) => person !== undefined) // Filter out any missing people
           .sort((a, b) => a.id - b.id);
-        
+
         return {
           hotels: hotelsWithSavedGuests,
-          unassignedPeople: unassignedPeople
+          unassignedPeople: unassignedPeople,
         };
       }
     } catch (err) {
@@ -708,16 +709,16 @@ function App() {
   useEffect(() => {
     try {
       // Extract just the guest IDs from each room to save
-      const guestAssignments = hotels.flatMap(hotel => 
-        hotel.rooms.map(room => ({
+      const guestAssignments = hotels.flatMap((hotel) =>
+        hotel.rooms.map((room) => ({
           roomId: room.id,
-          guestIds: room.guests.map(guest => guest.id)
-        }))
+          guestIds: room.guests.map((guest) => guest.id),
+        })),
       );
-      
+
       // Extract just the IDs from unassigned people
-      const unassignedPeopleIds = unassignedPeople.map(person => person.id);
-      
+      const unassignedPeopleIds = unassignedPeople.map((person) => person.id);
+
       // Save only the guest assignments IDs, not the entire guest objects
       localStorage.setItem('guestAssignments', JSON.stringify(guestAssignments));
       localStorage.setItem('unassignedPeopleIds', JSON.stringify(unassignedPeopleIds));
@@ -726,7 +727,6 @@ function App() {
       console.error('Error saving state to localStorage:', err);
     }
   }, [hotels, unassignedPeople]);
-
 
   return (
     <DndProvider backend={HTML5Backend}>
