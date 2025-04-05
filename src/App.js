@@ -322,7 +322,7 @@ const accommodations = [
   // Mai intai pensiunile
   {
     id: 1,
-    name: 'Pensiunea "Casa Mari" - 4 camere',
+    name: 'Pensiunea "Casa Mari"',
     rooms: [
       { id: 'casa-mari-double-1', name: 'Cameră Dublă 1', capacity: 2, guests: [] },
       { id: 'casa-mari-double-2', name: 'Cameră Dublă 2', capacity: 2, guests: [] },
@@ -345,7 +345,7 @@ const accommodations = [
   },
   {
     id: 3,
-    name: 'Pensiunea "Casa Făget" - 4 camere',
+    name: 'Pensiunea "Casa Făget"',
     rooms: [
       { id: 'faget-double-1', name: 'Cameră Dublă 1', capacity: 2, guests: [] },
       { id: 'faget-double-2', name: 'Cameră Dublă 2', capacity: 2, guests: [] },
@@ -356,7 +356,7 @@ const accommodations = [
   // Apoi hotelurile
   {
     id: 4,
-    name: 'Hotel "Elitis" - 22 camere',
+    name: 'Hotel "Elitis"',
     rooms: [
       { id: 'elania-double-1', name: 'Cameră Dublă 1', capacity: 2, guests: [] },
       { id: 'elania-double-2', name: 'Cameră Dublă 2', capacity: 2, guests: [] },
@@ -447,14 +447,37 @@ function App() {
   // Load saved state from localStorage or use defaults
   const loadSavedState = () => {
     try {
-      // Try to load saved hotels data
-      const savedHotels = localStorage.getItem('hotels');
+      // Try to load saved guest assignments
+      const savedGuestAssignments = localStorage.getItem('guestAssignments');
       const savedUnassignedPeople = localStorage.getItem('unassignedPeople');
-
-      if (savedHotels && savedUnassignedPeople) {
+      
+      if (savedGuestAssignments && savedUnassignedPeople) {
+        // Parse the saved guest assignments
+        const guestAssignments = JSON.parse(savedGuestAssignments);
+        
+        // Start with the default accommodations structure
+        const hotelsWithSavedGuests = accommodations.map(hotel => {
+          // Create a deep copy of the hotel
+          const hotelCopy = { ...hotel, rooms: [...hotel.rooms] };
+          
+          // For each room in the hotel, find and apply saved guest assignments
+          hotelCopy.rooms = hotelCopy.rooms.map(room => {
+            // Look for saved guests for this room
+            const savedRoom = guestAssignments.find(item => item.roomId === room.id);
+            
+            // If found, use the saved guests, otherwise keep the room empty
+            return {
+              ...room,
+              guests: savedRoom ? savedRoom.guests : []
+            };
+          });
+          
+          return hotelCopy;
+        });
+        
         return {
-          hotels: JSON.parse(savedHotels),
-          unassignedPeople: JSON.parse(savedUnassignedPeople),
+          hotels: hotelsWithSavedGuests,
+          unassignedPeople: JSON.parse(savedUnassignedPeople)
         };
       }
     } catch (err) {
@@ -663,21 +686,29 @@ function App() {
   // Save state to localStorage whenever it changes
   useEffect(() => {
     try {
-      localStorage.setItem('hotels', JSON.stringify(hotels));
+      // Extract just the guest assignments from each room to save
+      const guestAssignments = hotels.flatMap(hotel => 
+        hotel.rooms.map(room => ({
+          roomId: room.id,
+          guests: room.guests
+        }))
+      );
+      
+      // Save only the guest assignments, not the entire hotel structure
+      localStorage.setItem('guestAssignments', JSON.stringify(guestAssignments));
       localStorage.setItem('unassignedPeople', JSON.stringify(unassignedPeople));
-      console.log('State saved to localStorage');
+      console.log('Guest assignments saved to localStorage');
     } catch (err) {
       console.error('Error saving state to localStorage:', err);
     }
   }, [hotels, unassignedPeople]);
 
+
   return (
     <DndProvider backend={HTML5Backend}>
       <AppContainer>
         <Header>
-          <HeaderContainer>
-            <HeaderTitle>Planificarea Cazării la Nuntă 💍🏡</HeaderTitle>
-          </HeaderContainer>
+          <HeaderTitle>Planificarea Cazării la Nuntă 💍🏡</HeaderTitle>
         </Header>
         <MainContainer>
           <PersonList people={unassignedPeople} />

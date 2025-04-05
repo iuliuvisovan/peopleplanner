@@ -69,6 +69,22 @@ const HotelIcon = styled.span`
 const HeaderContent = styled.div`
   display: flex;
   align-items: center;
+  flex: 1;
+`;
+
+const OccupancyCounter = styled.div`
+  background-color: ${props => props.isFull ? '#4ade80' : '#ffde59'};
+  color: ${props => props.isFull ? '#166534' : '#4a2500'};
+  padding: 0.35rem 0.75rem;
+  border-radius: 2rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-right: 1rem;
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.5px;
 `;
 
 const ExpandIcon = styled.span`
@@ -115,34 +131,54 @@ function HotelList({ hotels, onAssignPerson, onUnassignPerson }) {
     }));
   };
 
+  // Calculate total capacity and occupancy for each hotel
+  const getHotelStats = (hotel) => {
+    let totalCapacity = 0;
+    let totalOccupancy = 0;
+    
+    hotel.rooms.forEach(room => {
+      totalCapacity += room.capacity;
+      totalOccupancy += room.guests.length;
+    });
+    
+    return { totalCapacity, totalOccupancy, isFull: totalOccupancy >= totalCapacity };
+  };
+
   return (
     <Container>
       <Title>Cazare Disponibilă</Title>
       <HotelsContainer>
-        {hotels.map((hotel) => (
-          <HotelSection key={hotel.id}>
-            <HotelHeader onClick={() => toggleHotelExpansion(hotel.id)}>
-              <HeaderContent>
-                <HotelIcon>{getHotelIcon(hotel.name)}</HotelIcon>
-                <HotelName>{hotel.name}</HotelName>
-              </HeaderContent>
-              <ExpandIcon expanded={expandedHotels[hotel.id]}>▼</ExpandIcon>
-            </HotelHeader>
-            <RoomsGrid expanded={expandedHotels[hotel.id]}>
-              {hotel.rooms.map((room) => (
-                <Room
-                  key={room.id}
-                  id={room.id}
-                  name={room.name}
-                  capacity={room.capacity}
-                  guests={room.guests}
-                  onAssignPerson={onAssignPerson}
-                  onUnassignPerson={onUnassignPerson}
-                />
-              ))}
-            </RoomsGrid>
-          </HotelSection>
-        ))}
+        {hotels.map((hotel) => {
+          const { totalCapacity, totalOccupancy, isFull } = getHotelStats(hotel);
+          
+          return (
+            <HotelSection key={hotel.id}>
+              <HotelHeader onClick={() => toggleHotelExpansion(hotel.id)}>
+                <HeaderContent>
+                  <HotelIcon>{getHotelIcon(hotel.name)}</HotelIcon>
+                  <HotelName>{hotel.name}</HotelName>
+                </HeaderContent>
+                <OccupancyCounter isFull={isFull}>
+                  {totalOccupancy}/{totalCapacity} locuri ocupate
+                </OccupancyCounter>
+                <ExpandIcon expanded={expandedHotels[hotel.id]}>▼</ExpandIcon>
+              </HotelHeader>
+              <RoomsGrid expanded={expandedHotels[hotel.id]}>
+                {hotel.rooms.map((room) => (
+                  <Room
+                    key={room.id}
+                    id={room.id}
+                    name={room.name}
+                    capacity={room.capacity}
+                    guests={room.guests}
+                    onAssignPerson={onAssignPerson}
+                    onUnassignPerson={onUnassignPerson}
+                  />
+                ))}
+              </RoomsGrid>
+            </HotelSection>
+          );
+        })}
       </HotelsContainer>
     </Container>
   );
