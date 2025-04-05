@@ -246,7 +246,7 @@ const invitees = [
   },
   {
     id: 157,
-    name: 'Ionut Balmuș',
+    name: 'Ionuț Balmuș',
     notes: 'soț Cristina Eșanu'
   },
   {
