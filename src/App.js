@@ -450,56 +450,72 @@ function App() {
   // Load saved state from localStorage or use defaults
   const loadSavedState = () => {
     try {
-      // Try to load saved guest assignments
-      const savedGuestAssignments = localStorage.getItem('guestAssignments');
-      const savedUnassignedPeopleIds = localStorage.getItem('unassignedPeopleIds');
-
-      if (savedGuestAssignments && savedUnassignedPeopleIds) {
-        // Parse the saved guest assignments
-        const guestAssignments = JSON.parse(savedGuestAssignments);
-        const unassignedIds = JSON.parse(savedUnassignedPeopleIds);
-
-        // Create a map of all invitees for quick lookup
-        const inviteesMap = {};
-        invitees.forEach((person) => {
-          inviteesMap[person.id] = person;
+      // Try to load saved guest-to-room assignments
+      const savedGuestRoomMappings = localStorage.getItem('guestRoomMappings');
+      
+      if (savedGuestRoomMappings) {
+        // Parse the saved guest-to-room mappings
+        const guestRoomMappings = JSON.parse(savedGuestRoomMappings);
+        
+        // Create a set of assigned guest IDs for quick lookup
+        const assignedGuestIds = new Set();
+        guestRoomMappings.forEach(mapping => {
+          assignedGuestIds.add(mapping.guestId);
         });
-
+        
         // Start with the default accommodations structure
-        const hotelsWithSavedGuests = accommodations.map((hotel) => {
+        const hotelsWithSavedGuests = accommodations.map(hotel => {
           // Create a deep copy of the hotel
           const hotelCopy = { ...hotel, rooms: [...hotel.rooms] };
-
+          
           // For each room in the hotel, find and apply saved guest assignments
-          hotelCopy.rooms = hotelCopy.rooms.map((room) => {
-            // Look for saved guests for this room
-            const savedRoom = guestAssignments.find((item) => item.roomId === room.id);
-
-            if (savedRoom && savedRoom.guestIds && savedRoom.guestIds.length > 0) {
-              // Map guest IDs to full guest objects from invitees array
-              const guests = savedRoom.guestIds.map((id) => inviteesMap[id]).filter((guest) => guest !== undefined); // Filter out any missing guests
-
+          hotelCopy.rooms = hotelCopy.rooms.map(room => {
+            // Find all guest mappings for this room
+            const roomMappings = guestRoomMappings.filter(mapping => mapping.roomId === room.id);
+            
+            if (roomMappings.length > 0) {
+              // For each mapping, find the guest in the invitees array
+              const guests = roomMappings
+                .map(mapping => {
+                  // Find the guest in the invitees array by ID
+                  const guest = invitees.find(person => person.id === mapping.guestId);
+                  
+                  // If found in invitees, use that; if not, try to use the saved name (for redundancy)
+                  if (guest) {
+                    return guest;
+                  } else if (mapping.guestName) {
+                    // Create minimal guest object with the saved name if the original isn't found
+                    console.warn(`Guest ID ${mapping.guestId} not found in invitees array, using saved name`);
+                    return { 
+                      id: mapping.guestId, 
+                      name: mapping.guestName,
+                      fromWho: mapping.fromWho || undefined
+                    };
+                  }
+                  return null;
+                })
+                .filter(guest => guest !== null); // Filter out any null guests
+              
               return {
                 ...room,
-                guests: guests,
+                guests: guests
               };
             } else {
               return { ...room, guests: [] };
             }
           });
-
+          
           return hotelCopy;
         });
-
-        // Map unassigned IDs to full invitee objects
-        const unassignedPeople = unassignedIds
-          .map((id) => inviteesMap[id])
-          .filter((person) => person !== undefined) // Filter out any missing people
+        
+        // Calculate unassigned people as all invitees not in assignedGuestIds
+        const unassignedPeople = invitees
+          .filter(person => !assignedGuestIds.has(person.id))
           .sort((a, b) => a.id - b.id);
-
+        
         return {
           hotels: hotelsWithSavedGuests,
-          unassignedPeople: unassignedPeople,
+          unassignedPeople: unassignedPeople
         };
       }
     } catch (err) {
@@ -708,21 +724,27 @@ function App() {
   // Save state to localStorage whenever it changes
   useEffect(() => {
     try {
-      // Extract just the guest IDs from each room to save
-      const guestAssignments = hotels.flatMap((hotel) =>
-        hotel.rooms.map((room) => ({
-          roomId: room.id,
-          guestIds: room.guests.map((guest) => guest.id),
-        })),
-      );
-
-      // Extract just the IDs from unassigned people
-      const unassignedPeopleIds = unassignedPeople.map((person) => person.id);
-
-      // Save only the guest assignments IDs, not the entire guest objects
-      localStorage.setItem('guestAssignments', JSON.stringify(guestAssignments));
-      localStorage.setItem('unassignedPeopleIds', JSON.stringify(unassignedPeopleIds));
-      console.log('Guest assignment IDs saved to localStorage');
+      // Create a flat array of guest-to-room mappings with minimum needed info
+      const guestRoomMappings = [];
+      
+      // Extract all guest->room assignments from hotels
+      hotels.forEach(hotel => {
+        hotel.rooms.forEach(room => {
+          // For each guest in the room, create a mapping entry
+          room.guests.forEach(guest => {
+            guestRoomMappings.push({
+              guestId: guest.id,
+              guestName: guest.name, // Save name for redundancy
+              fromWho: guest.fromWho, // Save additional info for redundancy
+              roomId: room.id
+            });
+          });
+        });
+      });
+      
+      // Save only the mapping between guests and rooms, with basic guest info for redundancy
+      localStorage.setItem('guestRoomMappings', JSON.stringify(guestRoomMappings));
+      console.log('Guest-room mappings saved to localStorage');
     } catch (err) {
       console.error('Error saving state to localStorage:', err);
     }
