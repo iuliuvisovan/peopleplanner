@@ -36,7 +36,7 @@ const HotelSection = styled.div`
 `;
 
 const HotelHeader = styled.div`
-  background: linear-gradient(0, #efb73e, #ffcf66);
+  background: linear-gradient(0, hsl(41.02deg 84.69% 64%), #ffcf66);
   color: #4a2500;
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;

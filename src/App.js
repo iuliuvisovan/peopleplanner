@@ -425,7 +425,7 @@ const AppContainer = styled.div`
 `;
 
 const Header = styled.header`
-  background: linear-gradient(0, #efb73e, #ffcf66);
+  background: linear-gradient(0, hsl(41.02deg 84.69% 64%), #ffcf66);
   padding: 1.5rem;
   text-align: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);

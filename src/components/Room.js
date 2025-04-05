@@ -39,19 +39,20 @@ const RoomName = styled.h3`
 
 const RoomCapacity = styled.div`
   background-color: ${(props) => {
-    if (props.filled > props.capacity) return '#fff0e0';
-    if (props.filled === props.capacity) return '#f0fff4';
-    return '#fff2e6';
+    if (props.filled > props.capacity) return '#fff';
+    if (props.filled === props.capacity) return '#fff2e6';
+    return '#fff';
   }};
 
   color: hsl(39 87% 45% / 1);
 
-  padding: 0.25rem 0.75rem;
+  padding: 0.25rem 0.5rem;
   border-radius: 2rem;
   font-size: 0.875rem;
   font-weight: 600;
   font-family: 'Montserrat', sans-serif;
   border: 1px solid hsl(32 100% 75% / 1);
+  letter-spacing: 1.5px;
 `;
 
 const GuestList = styled.div`
@@ -102,7 +103,7 @@ function Room({ id, name, capacity, guests, onAssignPerson, onUnassignPerson }) 
       <GuestList ref={drop} isOver={isOver} isEmpty={guests.length === 0}>
         {guests.length > 0 ? (
           guests.map((guest) => (
-            <Person key={guest.id} id={guest.id} name={guest.name} inRoom={true} roomId={id} onUnassign={onUnassignPerson} />
+            <Person key={guest.id} id={guest.id} name={guest.name} inRoom={true} roomId={id} onUnassign={onUnassignPerson} fromWho={guest.fromWho} />
           ))
         ) : (
           <EmptyState>Trage invitații aici</EmptyState>
