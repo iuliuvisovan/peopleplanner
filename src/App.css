@@ -1,0 +1,50 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: #3c3224;
+  background-color: #fcfaf5;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fcfaf5;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c0a87e;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9c8d6e;
+}
+
+/* Gold shimmer animation for elements */
+@keyframes goldShimmer {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Better focus styles for accessibility */
+*:focus {
+  outline: 2px solid #c0a87e;
+  outline-offset: 2px;
+}
+
+/* Smoother transitions */
+button, a, input, select {
+  transition: all 0.2s ease;
+}
