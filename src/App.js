@@ -319,34 +319,6 @@ const samplePeople = [
     id: 'p169',
     name: 'Codruta Cenan',
   },
-  {
-    id: 'p170',
-    name: 'Cosmin Cosma',
-  },
-  {
-    id: 'p171',
-    name: 'Ovidiu Istrate',
-  },
-  {
-    id: 'p172',
-    name: 'Iubita lu Ovidiu Istrate',
-  },
-  {
-    id: 'p173',
-    name: 'Bogdan Bîtfoi',
-  },
-  {
-    id: 'p174',
-    name: 'Denisa Pîrvu',
-  },
-  {
-    id: 'p175',
-    name: 'Bianca Lazarciuc',
-  },
-  {
-    id: 'p176',
-    name: 'Bodgan Lazarciuc',
-  },
 ];
 
 // Cazari hardcodate in ordine: mai intai pensiunile, apoi hotelurile
