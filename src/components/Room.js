@@ -8,8 +8,8 @@ const RoomContainer = styled.div`
   padding: 1.25rem;
   margin-bottom: 1rem;
   transition: box-shadow 0.2s, background-color 0.2s;
-  border: 1px solid #ffe0b2;
-  background: hsl(41 98% 98% / 1);
+  border: 1px solid hsl(36 100% 70% / 1);
+  background: hsl(41 98% 92% / 1);
   height: ${(props) => (props.capacity === 3 ? '270px' : '210px')};
   opacity: ${(props) => (props.isFull ? '0.8' : '1')};
 
@@ -24,8 +24,8 @@ const RoomContainer = styled.div`
   ${(props) =>
     props.isFull &&
     `
-    border: 1px solid hsl(100 50% 65% / 1);
-    background-color: hsl(100 50% 95% / 1);
+    border: 1px solid hsl(100 50% 70% / 1);
+    background-color: hsl(100 50% 90% / 1);
   `}
 `;
 

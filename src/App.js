@@ -32,7 +32,7 @@ const invitees = [
   { id: 23, name: 'Haidu Luca', fromWho: 'groom' },
   { id: 24, name: 'Basanciuc Ovidiu', fromWho: 'groom' },
   { id: 25, name: 'Basanciuc Ramona', fromWho: 'groom' },
-  { id: 26, name: 'Mursa Catalin', fromWho: 'groom' },
+  { id: 26, name: 'Mursa Cătălin', fromWho: 'groom' },
   { id: 27, name: 'Mursa (Turcan) Valentina', fromWho: 'groom' },
   { id: 28, name: 'Spiridon Iulian', fromWho: 'groom' },
   { id: 29, name: 'Spiridon (Chifor) Ionela', fromWho: 'groom' },
