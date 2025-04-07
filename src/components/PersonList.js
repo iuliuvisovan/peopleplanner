@@ -123,6 +123,7 @@ function PersonList({ people, searchTerm, foundPerson }) {
           fromWho={person.fromWho} 
           inRoom={false}
           highlight={true}
+          notes={person.notes}
         />
       );
     }
@@ -140,6 +141,7 @@ function PersonList({ people, searchTerm, foundPerson }) {
           fromWho={person.fromWho} 
           inRoom={false}
           highlight={shouldHighlight}
+          notes={person.notes}
         />
       );
     });

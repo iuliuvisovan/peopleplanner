@@ -40,7 +40,14 @@ const PersonName = styled.p`
   letter-spacing: 0.2px;
 `;
 
-function Person({ id, name, inRoom, roomId, onUnassign, fromWho, highlight = false }) {
+const Notes = styled.p`
+  margin: 0;
+  font-size: 0.8rem;
+  color: #666;
+  font-family: 'Montserrat', sans-serif;
+`;
+
+function Person({ id, name, inRoom, roomId, onUnassign, fromWho, highlight = false, notes }) {
   const [{ isDragging }, drag] = useDrag(
     () => ({
       type: inRoom ? 'ASSIGNED_PERSON' : 'PERSON',
@@ -80,6 +87,7 @@ function Person({ id, name, inRoom, roomId, onUnassign, fromWho, highlight = fal
       title={title}
     >
       <PersonName>{name}</PersonName>
+      {notes && <Notes>{notes}</Notes>}
     </PersonItem>
   );
 }

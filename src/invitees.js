@@ -1,4 +1,4 @@
-export default [
+const invitees = [
   { id: 1, name: 'Danci Crina', fromWho: 'groom' },
   { id: 2, name: 'Danci Andrei', fromWho: 'groom' },
   { id: 3, name: 'Danci Mariana', fromWho: 'groom' },
@@ -30,206 +30,270 @@ export default [
   { id: 29, name: 'Spiridon (Chifor) Ionela', fromWho: 'groom' },
   { id: 30, name: 'Gelu Godjea', fromWho: 'groom' },
   { id: 31, name: 'Flavia Godjea', fromWho: 'groom' },
-  { id: 97, name: 'Timoftoaie Georgiana' },
-  { id: 98, name: 'Timoftoaie Petru' },
-  { id: 99, name: 'Timoftoaie Leonardo' },
-  { id: 100, name: 'Mirabela Gherasim' },
+  {
+    id: 97,
+    name: 'Timoftoaie Georgiana',
+    notes: '',
+  },
+  {
+    id: 98,
+    name: 'Timoftoaie Petru',
+    notes: '',
+  },
+  {
+    id: 99,
+    name: 'Timoftoaie Leonardo & Iustin',
+    notes: '10 ani / 3 ani',
+  },
+  {
+    id: 100,
+    name: 'Mirabela Gherasim',
+    notes: '',
+  },
   {
     id: 101,
     name: 'Carcea Ionuț',
+    notes: 'prietenul Mirabelei Gherasim',
   },
   {
     id: 102,
     name: 'Andreea Țăruș',
+    notes: '',
   },
   {
     id: 103,
     name: 'Ilie Vieru',
+    notes: '',
   },
   {
     id: 104,
     name: 'Alexandra Ciobanu (Manolache)',
+    notes: '',
   },
   {
     id: 105,
     name: 'Gheorghiță Ciobanu',
+    notes: '',
   },
   {
     id: 106,
     name: 'Daniel Roșca',
+    notes: '',
   },
   {
     id: 107,
     name: 'Teodora Angheluță',
+    notes: '',
   },
   {
     id: 108,
     name: 'George Vrânceanu',
+    notes: '',
   },
   {
     id: 109,
     name: 'Iubita lu George',
+    notes: '',
   },
   {
     id: 110,
     name: 'Bogdan Iacob',
+    notes: '',
   },
   {
     id: 111,
     name: 'Partenera lu Bogdan Iacob',
+    notes: '',
   },
   {
     id: 114,
     name: 'Lipovanu Dorin',
+    notes: '',
   },
   {
     id: 115,
-    name: 'Lipovanu Iustin copil',
+    name: 'Lipovanu Iustin',
+    notes: 'copil - 3 ani',
   },
   {
     id: 116,
     name: 'Lipovanu Cristina',
+    notes: '+ copil Iustin 3 ani',
   },
   {
     id: 117,
     name: 'Iuliana Constantiniu',
-    note: '"Coca Marțin"',
+    notes: '"Coca Marțin"',
   },
   {
     id: 118,
     name: 'Tudor Constantiniu',
+    notes: '',
   },
   {
     id: 121,
     name: 'Valerica Lucan',
+    notes: '',
   },
   {
     id: 122,
     name: 'iubitu lu valerica Costel Cilof',
+    notes: '',
   },
   {
     id: 123,
-    name: 'Gelu Calin',
+    name: 'Gelu Călin',
+    notes: '',
   },
   {
     id: 124,
-    name: 'Valentina Calin',
+    name: 'Valentina Călin',
+    notes: '',
   },
   {
     id: 125,
     name: 'Elena Martin',
+    notes: '',
   },
   {
     id: 126,
     name: 'Alexandra Lucan',
+    notes: '',
   },
   {
     id: 127,
-    name: 'Alexandra Lucan - iubit',
+    name: 'Bodea Andrei Ionuț',
+    notes: 'iubitul Alexandrei Lucan',
   },
   {
     id: 128,
     name: 'Daniel Lucan',
+    notes: '',
   },
   {
     id: 129,
     name: 'Iubita lu Daniel Lucan',
+    notes: '',
   },
   {
     id: 130,
     name: 'Lucan Lenuța',
+    notes: '',
   },
   {
     id: 131,
-    name: 'Lucan Petrisor',
+    name: 'Lucan Petrișor',
+    notes: '',
   },
   {
     id: 132,
     name: 'Gabi Martin',
+    notes: '',
   },
   {
     id: 133,
-    name: 'Calina Martin',
+    name: 'Călina Martin',
+    notes: '',
   },
   {
     id: 134,
     name: 'Lavinia Amarculesei',
+    notes: '',
   },
   {
     id: 135,
     name: 'Lavinia Amarculesei - iubit',
+    notes: '',
   },
   {
     id: 136,
     name: 'Iuliana Tutuianu (Axinte)',
+    notes: '',
   },
   {
     id: 137,
     name: 'Ovidiu Tutuianu',
+    notes: '',
   },
   {
     id: 138,
-    name: 'Malina Apopei',
+    name: 'Mălina Apopei',
+    notes: '',
   },
   {
     id: 139,
     name: 'Marius Apopei',
+    notes: '',
   },
   {
     id: 140,
     name: 'Raluca Rebegia  - ex Pavel',
+    notes: '',
   },
   {
     id: 141,
     name: 'Alin Rebegia  - a lu Raluca',
+    notes: '',
   },
   {
     id: 142,
     name: 'Gabriela Mandric (Andrioaie)',
+    notes: '',
   },
   {
     id: 143,
-    name: 'Catalin Mandric',
+    name: 'Cătălin Mandric',
+    notes: '',
   },
   {
     id: 144,
     name: 'Alexandru Archip',
+    notes: '',
   },
   {
     id: 145,
     name: 'Cristina Archip',
+    notes: '',
   },
   {
     id: 146,
     name: 'Luca Petrică',
+    notes: '',
   },
   {
     id: 147,
     name: 'Luca Marinela',
+    notes: '',
   },
   {
     id: 148,
     name: 'Anechitoaie Cristian',
+    notes: '',
   },
   {
     id: 149,
     name: 'Anechitoaie Mariana',
+    notes: '',
   },
   {
     id: 150,
     name: 'Galbin Gheorghe',
+    notes: '',
   },
   {
     id: 151,
     name: 'Galbin Anișoara',
+    notes: '',
   },
   {
     id: 152,
     name: 'Mihaela Mătase',
+    notes: '',
   },
   {
     id: 153,
     name: 'Puiu Mătase',
+    notes: '',
   },
   {
     id: 156,
@@ -244,9 +308,13 @@ export default [
   {
     id: 158,
     name: 'Mihaela Chelciuc',
+    notes: '',
   },
   {
     id: 159,
     name: 'Iubitul lui Mihaela Chelciuc - aka Bogdan',
+    notes: '',
   },
 ];
+
+export default invitees;
