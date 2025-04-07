@@ -105,7 +105,7 @@ const invitees = [
   },
   {
     id: 118,
-    name: 'Sotul Cocai - nume adev Tudor Constantiniu',
+    name: 'Tudor Constantiniu',
   },
   {
     id: 121,
@@ -177,11 +177,11 @@ const invitees = [
   },
   {
     id: 138,
-    name: 'Malina Ostafi',
+    name: 'Malina Apopei',
   },
   {
     id: 139,
-    name: 'Marius Ostafi',
+    name: 'Marius Apopei',
   },
   {
     id: 140,
@@ -255,7 +255,7 @@ const invitees = [
   },
   {
     id: 159,
-    name: 'Iubitul lui Mihaela Bogdan - aka Bogdan Agache',
+    name: 'Iubitul lui Mihaela Chelciuc - aka Bogdan',
   },
 ];
 
