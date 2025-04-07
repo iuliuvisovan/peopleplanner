@@ -10,9 +10,7 @@ const PersonItem = styled.div`
     return 'white';
   }};
   border-radius: 0.5rem;
-  box-shadow: ${(props) => props.highlight 
-    ? '0 0 0 2px #ffbd59, 0 4px 8px rgba(0, 0, 0, 0.15)' 
-    : '0 0px 4px rgba(0, 0, 0, 0.26)'};
+  box-shadow: ${(props) => (props.highlight ? '0 0 0 2px #ffbd59, 0 4px 8px rgba(0, 0, 0, 0.15)' : '0 0px 4px rgba(0, 0, 0, 0.26)')};
   transition: all 0.05s;
   cursor: ${(props) => (props.inRoom ? 'pointer' : 'grab')};
   opacity: ${(props) => (props.isDragging ? 0.5 : 1)};
@@ -45,19 +43,20 @@ const Notes = styled.p`
   font-size: 0.8rem;
   color: #666;
   font-family: 'Montserrat', sans-serif;
+  margin-bottom: -6px;
 `;
 
 function Person({ id, name, inRoom, roomId, onUnassign, fromWho, highlight = false, notes }) {
   const [{ isDragging }, drag] = useDrag(
     () => ({
       type: inRoom ? 'ASSIGNED_PERSON' : 'PERSON',
-      item: { 
-        id, 
-        name, 
-        roomId, 
+      item: {
+        id,
+        name,
+        roomId,
         fromWho,
         // Add a field to track if this person is already in a room
-        inRoom 
+        inRoom,
       },
       collect: (monitor) => ({
         isDragging: !!monitor.isDragging(),
@@ -77,16 +76,16 @@ function Person({ id, name, inRoom, roomId, onUnassign, fromWho, highlight = fal
   const title = inRoom ? 'Apasă pentru a elimina sau trage pentru a muta' : 'Trage pentru a atribui';
 
   return (
-    <PersonItem 
-      ref={drag} 
-      isDragging={isDragging} 
-      onClick={handleClick} 
-      inRoom={inRoom} 
-      fromWho={fromWho} 
+    <PersonItem
+      ref={drag}
+      isDragging={isDragging}
+      onClick={handleClick}
+      inRoom={inRoom}
+      fromWho={fromWho}
       highlight={highlight}
       title={title}
     >
-      <PersonName>{name}</PersonName>
+      <PersonName style={{ marginTop: notes ? -6 : 0 }}>{name}</PersonName>
       {notes && <Notes>{notes}</Notes>}
     </PersonItem>
   );

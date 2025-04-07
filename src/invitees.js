@@ -4,18 +4,18 @@ const invitees = [
   { id: 3, name: 'Danci Mariana', fromWho: 'groom' },
   { id: 4, name: 'Danci Vasile', fromWho: 'groom' },
   { id: 5, name: 'Aurelia Vișovan', fromWho: 'groom' },
-  { id: 6, name: 'Can Çakmur', fromWho: 'groom' },
+  { id: 6, name: 'Can Çakmur', fromWho: 'groom', notes: 'prietenul Aureliei Vișovan' },
   { id: 7, name: 'Iulian Mîcnea', fromWho: 'groom' },
-  { id: 8, name: 'Diana Mîcnea', fromWho: 'groom' },
+  { id: 8, name: 'Diana Mîcnea', fromWho: 'groom', notes: 'prietena lui Iulian Mîcnea' },
   { id: 9, name: 'Ardelean Ramona', fromWho: 'groom' },
   { id: 10, name: 'Ardelean Petrică', fromWho: 'groom' },
   { id: 11, name: 'Doina Balasz', fromWho: 'groom' },
-  { id: 12, name: 'Radu Ilnițchi', fromWho: 'groom' },
+  { id: 12, name: 'Radu Ilnițchi', fromWho: 'groom', notes: 'soțul Doinei Balasz' },
   { id: 13, name: 'Paul Balasz', fromWho: 'groom' },
   { id: 14, name: 'Robert Balasz', fromWho: 'groom' },
   { id: 15, name: 'Vasi Teleptean', fromWho: 'groom' },
   { id: 16, name: 'Vasi Teleptean - logodnică', fromWho: 'groom' },
-  { id: 17, name: 'Hajdu Romina', fromWho: 'groom' },
+  { id: 17, name: 'Hajdu Romina', fromWho: 'groom', notes: '"Romina Carpiuc"' },
   { id: 18, name: 'Hajdu Istvan', fromWho: 'groom' },
   { id: 19, name: 'Pr. Ardelean Cornel', fromWho: 'groom' },
   { id: 20, name: 'Ardelean Niculina', fromWho: 'groom' },
@@ -26,8 +26,8 @@ const invitees = [
   { id: 25, name: 'Basanciuc Ramona', fromWho: 'groom' },
   { id: 26, name: 'Mursa Cătălin', fromWho: 'groom' },
   { id: 27, name: 'Mursa (Turcan) Valentina', fromWho: 'groom' },
-  { id: 28, name: 'Spiridon Iulian', fromWho: 'groom' },
-  { id: 29, name: 'Spiridon (Chifor) Ionela', fromWho: 'groom' },
+  { id: 28, name: 'Spiridon Iulian Marian', fromWho: 'groom' },
+  { id: 29, name: 'Spiridon Ionela', fromWho: 'groom', notes: '"Chifor Ionela"' },
   { id: 30, name: 'Gelu Godjea', fromWho: 'groom' },
   { id: 31, name: 'Flavia Godjea', fromWho: 'groom' },
   {
@@ -63,12 +63,12 @@ const invitees = [
   {
     id: 103,
     name: 'Ilie Vieru',
-    notes: '',
+    notes: 'prietenul Andreei Țăruș',
   },
   {
     id: 104,
-    name: 'Alexandra Ciobanu (Manolache)',
-    notes: '',
+    name: 'Alexandra Ciobanu',
+    notes: '"Alexandra Manolache"',
   },
   {
     id: 105,
@@ -108,7 +108,7 @@ const invitees = [
   {
     id: 114,
     name: 'Lipovanu Dorin',
-    notes: '',
+    notes: 'fratele mamei miresei',
   },
   {
     id: 115,
@@ -137,8 +137,8 @@ const invitees = [
   },
   {
     id: 122,
-    name: 'iubitu lu valerica Costel Cilof',
-    notes: '',
+    name: 'Costel Cilof',
+    notes: 'iubitul Valericăi Lucan',
   },
   {
     id: 123,
@@ -152,7 +152,7 @@ const invitees = [
   },
   {
     id: 125,
-    name: 'Elena Martin',
+    name: 'Elena Marțin',
     notes: '',
   },
   {
@@ -187,12 +187,12 @@ const invitees = [
   },
   {
     id: 132,
-    name: 'Gabi Martin',
+    name: 'Gabi Marțin',
     notes: '',
   },
   {
     id: 133,
-    name: 'Călina Martin',
+    name: 'Călina Marțin',
     notes: '',
   },
   {
@@ -207,12 +207,12 @@ const invitees = [
   },
   {
     id: 136,
-    name: 'Iuliana Tutuianu (Axinte)',
+    name: 'Iuliana Țuțuianu (Axinte)',
     notes: '',
   },
   {
     id: 137,
-    name: 'Ovidiu Tutuianu',
+    name: 'Ovidiu Țuțuianu',
     notes: '',
   },
   {
@@ -227,18 +227,18 @@ const invitees = [
   },
   {
     id: 140,
-    name: 'Raluca Rebegia  - ex Pavel',
-    notes: '',
+    name: 'Rebegia Raluca',
+    notes: '"Raluca Pavel"',
   },
   {
     id: 141,
-    name: 'Alin Rebegia  - a lu Raluca',
+    name: 'Rebegia Alin',
     notes: '',
   },
   {
     id: 142,
-    name: 'Gabriela Mandric (Andrioaie)',
-    notes: '',
+    name: 'Gabriela Mandric',
+    notes: '"Gabi Andrioaie"',
   },
   {
     id: 143,
@@ -298,7 +298,7 @@ const invitees = [
   {
     id: 156,
     name: 'Cristina Marinela Balmuș',
-    notes: 'Cristina Eșanu',
+    notes: '"Cristina Eșanu"',
   },
   {
     id: 157,
@@ -312,8 +312,8 @@ const invitees = [
   },
   {
     id: 159,
-    name: 'Iubitul lui Mihaela Chelciuc - aka Bogdan',
-    notes: '',
+    name: 'Agache Bogdan',
+    notes: 'iubitul Mihaelei Chelciuc',
   },
 ];
 
