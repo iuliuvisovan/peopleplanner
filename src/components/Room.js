@@ -12,16 +12,18 @@ const RoomContainer = styled.div`
   background: hsl(41 98% 92% / 1);
   height: ${(props) => (props.capacity === 3 ? '270px' : '210px')};
 
+  /* No highlight needed for the room container */
+
   ${(props) =>
     props.isOver &&
-    !props.isFull &&
+    !props.isFull  
     `
     box-shadow: 0 0 0 2px #ffbd59, 0 4px 10px rgba(0, 0, 0, 0.12);
     background-color: #fff8f0;
   `}
 
   ${(props) =>
-    props.isFull &&
+    props.isFull && 
     `
     border: 1px solid hsl(100 50% 70% / 1);
     background-color: hsl(100 50% 90% / 1);
@@ -80,7 +82,7 @@ const EmptyState = styled.div`
   color: ${(props) => (props.isFull ? '#999' : 'inherit')};
 `;
 
-function Room({ id, name, capacity, guests, onAssignPerson, onUnassignPerson }) {
+function Room({ id, name, capacity, guests, onAssignPerson, onUnassignPerson, searchTerm, foundPerson, highlight = false }) {
   const isFull = guests.length >= capacity;
 
   const [{ isOver }, drop] = useDrop(
@@ -117,8 +119,10 @@ function Room({ id, name, capacity, guests, onAssignPerson, onUnassignPerson }) 
     [id, onAssignPerson, onUnassignPerson, isFull],
   );
 
+  // Removed SearchResult component as per client request
+
   return (
-    <RoomContainer isOver={isOver} capacity={capacity} isFull={isFull}>
+    <RoomContainer isOver={isOver} capacity={capacity} isFull={isFull} highlight={highlight}>
       <RoomHeader>
         <RoomName>{name}</RoomName>
         <RoomCapacity filled={guests.length} capacity={capacity}>
@@ -128,17 +132,25 @@ function Room({ id, name, capacity, guests, onAssignPerson, onUnassignPerson }) 
 
       <GuestList ref={drop} isOver={isOver} isEmpty={guests.length === 0} capacity={capacity}>
         {guests.length > 0 ? (
-          guests.map((guest) => (
-            <Person
-              key={guest.id}
-              id={guest.id}
-              name={guest.name}
-              inRoom={true}
-              roomId={id}
-              onUnassign={onUnassignPerson}
-              fromWho={guest.fromWho}
-            />
-          ))
+          guests.map((guest) => {
+            // Determine if this person should be highlighted
+            const shouldHighlight = 
+              (foundPerson && foundPerson.person.id === guest.id) ||
+              (searchTerm && guest.name.toLowerCase().includes(searchTerm.toLowerCase()));
+            
+            return (
+              <Person
+                key={guest.id}
+                id={guest.id}
+                name={guest.name}
+                inRoom={true}
+                roomId={id}
+                onUnassign={onUnassignPerson}
+                fromWho={guest.fromWho}
+                highlight={shouldHighlight}
+              />
+            );
+          })
         ) : (
           <EmptyState capacity={capacity} isFull={isFull}>
             {isFull ? 'Camera este plină' : 'Trage invitații aici'}

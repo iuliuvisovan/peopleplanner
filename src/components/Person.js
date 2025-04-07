@@ -4,16 +4,22 @@ import styled from 'styled-components';
 const PersonItem = styled.div`
   padding: 1rem;
   margin-bottom: 0.75rem;
-  background-color: ${(props) => (props.isDragging ? '#f7f9fc' : 'white')};
+  background-color: ${(props) => {
+    if (props.isDragging) return '#f7f9fc';
+    if (props.highlight) return '#fff8f0';
+    return 'white';
+  }};
   border-radius: 0.5rem;
-  box-shadow: 0 0px 4px rgba(0, 0, 0, 0.26);
+  box-shadow: ${(props) => props.highlight 
+    ? '0 0 0 2px #ffbd59, 0 4px 8px rgba(0, 0, 0, 0.15)' 
+    : '0 0px 4px rgba(0, 0, 0, 0.26)'};
   transition: all 0.05s;
   cursor: ${(props) => (props.inRoom ? 'pointer' : 'grab')};
   opacity: ${(props) => (props.isDragging ? 0.5 : 1)};
   border-left: 4px solid
     ${(props) => {
+      if (props.highlight) return '#ffbd59';
       return props.fromWho === 'groom' ? '#1991d2' : 'hsl(349 71% 76% / 1)';
-      // return props.inRoom ? 'green' : '#ffbd59';
     }};
 
   &:hover {
@@ -34,7 +40,7 @@ const PersonName = styled.p`
   letter-spacing: 0.2px;
 `;
 
-function Person({ id, name, inRoom, roomId, onUnassign, fromWho }) {
+function Person({ id, name, inRoom, roomId, onUnassign, fromWho, highlight = false }) {
   const [{ isDragging }, drag] = useDrag(
     () => ({
       type: inRoom ? 'ASSIGNED_PERSON' : 'PERSON',
@@ -64,7 +70,15 @@ function Person({ id, name, inRoom, roomId, onUnassign, fromWho }) {
   const title = inRoom ? 'Apasă pentru a elimina sau trage pentru a muta' : 'Trage pentru a atribui';
 
   return (
-    <PersonItem ref={drag} isDragging={isDragging} onClick={handleClick} inRoom={inRoom} fromWho={fromWho} title={title}>
+    <PersonItem 
+      ref={drag} 
+      isDragging={isDragging} 
+      onClick={handleClick} 
+      inRoom={inRoom} 
+      fromWho={fromWho} 
+      highlight={highlight}
+      title={title}
+    >
       <PersonName>{name}</PersonName>
     </PersonItem>
   );

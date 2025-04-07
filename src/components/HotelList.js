@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Room from './Room';
 
@@ -110,7 +110,7 @@ const RoomsGrid = styled.div`
   transition-delay: ${(props) => (props.expanded ? '0s, 0.1s' : '0s, 0s')};
 `;
 
-function HotelList({ hotels, onAssignPerson, onUnassignPerson }) {
+function HotelList({ hotels, onAssignPerson, onUnassignPerson, searchTerm, foundPerson }) {
   // State to track which hotels are expanded, with first hotel expanded by default
   const [expandedHotels, setExpandedHotels] = useState({
     1: true // Set the first pensiune (Casa Mari) to be expanded by default
@@ -130,6 +130,23 @@ function HotelList({ hotels, onAssignPerson, onUnassignPerson }) {
       [hotelId]: !prev[hotelId],
     }));
   };
+  
+  // Auto-expand hotel when a person is found in one of its rooms
+  useEffect(() => {
+    if (foundPerson && foundPerson.location === 'assigned') {
+      // Find the hotel that contains the room with the found person
+      const hotelWithFoundPerson = hotels.find(hotel => 
+        hotel.rooms.some(room => room.id === foundPerson.roomId)
+      );
+      
+      if (hotelWithFoundPerson) {
+        setExpandedHotels(prev => ({
+          ...prev,
+          [hotelWithFoundPerson.id]: true
+        }));
+      }
+    }
+  }, [foundPerson, hotels]);
 
   // Calculate total capacity and occupancy for each hotel
   const getHotelStats = (hotel) => {
@@ -151,6 +168,23 @@ function HotelList({ hotels, onAssignPerson, onUnassignPerson }) {
         {hotels.map((hotel) => {
           const { totalCapacity, totalOccupancy, isFull } = getHotelStats(hotel);
           
+          // Filter rooms based on search term
+          const matchingRooms = searchTerm 
+            ? hotel.rooms.filter(room => 
+                room.guests.some(guest => 
+                  guest.name.toLowerCase().includes(searchTerm.toLowerCase())
+                ) || 
+                (foundPerson && 
+                 foundPerson.location === 'assigned' && 
+                 hotel.rooms.some(r => r.id === foundPerson.roomId))
+              )
+            : hotel.rooms;
+          
+          // If searching and no matching rooms, skip this hotel entirely
+          if (searchTerm && matchingRooms.length === 0) {
+            return null;
+          }
+          
           return (
             <HotelSection key={hotel.id}>
               <HotelHeader onClick={() => toggleHotelExpansion(hotel.id)}>
@@ -164,21 +198,41 @@ function HotelList({ hotels, onAssignPerson, onUnassignPerson }) {
                 <ExpandIcon expanded={expandedHotels[hotel.id]}>▼</ExpandIcon>
               </HotelHeader>
               <RoomsGrid expanded={expandedHotels[hotel.id]}>
-                {hotel.rooms.map((room) => (
-                  <Room
-                    key={room.id}
-                    id={room.id}
-                    name={room.name}
-                    capacity={room.capacity}
-                    guests={room.guests}
-                    onAssignPerson={onAssignPerson}
-                    onUnassignPerson={onUnassignPerson}
-                  />
-                ))}
+                {hotel.rooms.map((room) => {
+                  // Check if this room contains the found person
+                  const isFoundPersonRoom = foundPerson && 
+                    foundPerson.location === 'assigned' && 
+                    foundPerson.roomId === room.id;
+                  
+                  // For search, check if any guest in this room matches the search term
+                  const hasMatchingGuest = searchTerm && room.guests.some(
+                    guest => guest.name.toLowerCase().includes(searchTerm.toLowerCase())
+                  );
+                  
+                  // Only show rooms that match the search criteria if searching
+                  if (searchTerm && !hasMatchingGuest && !isFoundPersonRoom) {
+                    return null; // Skip rendering this room
+                  }
+                    
+                  return (
+                    <Room
+                      key={room.id}
+                      id={room.id}
+                      name={room.name}
+                      capacity={room.capacity}
+                      guests={room.guests}
+                      onAssignPerson={onAssignPerson}
+                      onUnassignPerson={onUnassignPerson}
+                      searchTerm={searchTerm}
+                      foundPerson={foundPerson}
+                      highlight={isFoundPersonRoom}
+                    />
+                  );
+                }).filter(Boolean)}
               </RoomsGrid>
             </HotelSection>
           );
-        })}
+        }).filter(Boolean)}
       </HotelsContainer>
     </Container>
   );

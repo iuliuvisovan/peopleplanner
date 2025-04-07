@@ -242,12 +242,12 @@ const invitees = [
   {
     id: 156,
     name: 'Cristina Marinela Balmuș',
-    notes: 'Cristina Eșanu'
+    notes: 'Cristina Eșanu',
   },
   {
     id: 157,
     name: 'Ionuț Balmuș',
-    notes: 'soț Cristina Eșanu'
+    notes: 'soț Cristina Eșanu',
   },
   {
     id: 158,
@@ -355,21 +355,24 @@ const HeaderContainer = styled.div`
   width: 100%;
 `;
 
-const ResetButton = styled.button`
-  background-color: #ff4757;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  font-weight: 600;
-  cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 14px;
-  transition: all 0.2s;
+const SearchContainer = styled.div`
+  position: relative;
+  margin-left: auto;
+  margin-right: 16px;
+`;
 
-  &:hover {
-    background-color: #ff6b81;
-    transform: translateY(-2px);
+const SearchInput = styled.input`
+  padding: 10px 16px;
+  border-radius: 20px;
+  border: 1px solid #e0e6f0;
+  font-family: 'Montserrat', sans-serif;
+  min-width: 250px;
+  font-size: 16px;
+  outline: none;
+
+  &:focus {
+    border-color: #ffbd59;
+    box-shadow: 0 0 0 2px rgba(255, 189, 89, 0.2);
   }
 `;
 
@@ -470,6 +473,8 @@ function App() {
   const initialState = loadSavedState();
   const [hotels, setHotels] = useState(initialState.hotels);
   const [unassignedPeople, setUnassignedPeople] = useState(initialState.unassignedPeople);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [foundPerson, setFoundPerson] = useState(null);
 
   const handleAssignPerson = useCallback(
     (personId, roomId) => {
@@ -687,15 +692,72 @@ function App() {
     }
   }, [hotels, unassignedPeople]);
 
+  // Search for people function
+  const handleSearch = (e) => {
+    const term = e.target.value;
+    setSearchTerm(term);
+
+    if (term.trim() === '') {
+      setFoundPerson(null);
+      return;
+    }
+
+    // Search in all people (both unassigned and in rooms)
+    const lowerTerm = term.toLowerCase();
+
+    // First search in unassigned people
+    const foundInUnassigned = unassignedPeople.find((person) => person.name.toLowerCase().includes(lowerTerm));
+
+    if (foundInUnassigned) {
+      setFoundPerson({
+        person: foundInUnassigned,
+        location: 'unassigned',
+      });
+      return;
+    }
+
+    // Then search in assigned people
+    for (const hotel of hotels) {
+      for (const room of hotel.rooms) {
+        const foundInRoom = room.guests.find((person) => person.name.toLowerCase().includes(lowerTerm));
+
+        if (foundInRoom) {
+          setFoundPerson({
+            person: foundInRoom,
+            location: 'assigned',
+            hotelName: hotel.name,
+            roomName: room.name,
+            roomId: room.id,
+          });
+          return;
+        }
+      }
+    }
+
+    // If no match found
+    setFoundPerson(null);
+  };
+
   return (
     <DndProvider backend={HTML5Backend}>
       <AppContainer>
         <Header>
-          <HeaderTitle>Planificarea Cazării la Nuntă 💍🏡</HeaderTitle>
+          <HeaderContainer>
+            <HeaderTitle>Planificarea Cazării la Nuntă 💍🏡</HeaderTitle>
+            <SearchContainer>
+              <SearchInput type="text" placeholder="Caută persoană..." value={searchTerm} onChange={handleSearch} />
+            </SearchContainer>
+          </HeaderContainer>
         </Header>
         <MainContainer>
-          <PersonList people={unassignedPeople} />
-          <HotelList hotels={hotels} onAssignPerson={handleAssignPerson} onUnassignPerson={handleUnassignPerson} />
+          <PersonList people={unassignedPeople} searchTerm={searchTerm} foundPerson={foundPerson} />
+          <HotelList
+            hotels={hotels}
+            onAssignPerson={handleAssignPerson}
+            onUnassignPerson={handleUnassignPerson}
+            searchTerm={searchTerm}
+            foundPerson={foundPerson}
+          />
         </MainContainer>
       </AppContainer>
     </DndProvider>
