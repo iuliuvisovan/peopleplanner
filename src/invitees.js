@@ -21,7 +21,7 @@ const invitees = [
   { id: 20, name: 'Ardelean Niculina', fromWho: 'groom' },
   { id: 21, name: 'Haidu Romulus (Romi)', fromWho: 'groom' },
   { id: 22, name: 'Haidu Diana', fromWho: 'groom' },
-  { id: 23, name: 'Haidu Luca', fromWho: 'groom' },
+  { id: 23, name: 'Haidu Luca', fromWho: 'groom', notes: 'copil cls 5-a' },
   { id: 24, name: 'Basanciuc Ovidiu', fromWho: 'groom' },
   { id: 25, name: 'Basanciuc Ramona', fromWho: 'groom' },
   { id: 26, name: 'Mursa Cătălin', fromWho: 'groom' },
@@ -82,18 +82,18 @@ const invitees = [
   },
   {
     id: 107,
-    name: 'Teodora Angheluță',
-    notes: '',
+    name: 'Angheluță Teodora',
+    notes: 'iubita lui Daniel Roșca',
   },
   {
     id: 108,
-    name: 'George Vrânceanu',
+    name: 'Vrînceanu George',
     notes: '',
   },
   {
     id: 109,
-    name: 'Iubita lu George',
-    notes: '',
+    name: 'Baroi Arianna',
+    notes: 'iubita lui Vrînceanu George',
   },
   {
     id: 110,
@@ -102,18 +102,13 @@ const invitees = [
   },
   {
     id: 111,
-    name: 'Partenera lu Bogdan Iacob',
-    notes: '',
+    name: 'Lupu Maria',
+    notes: 'iubita lui Bogdan Iacob',
   },
   {
     id: 114,
     name: 'Lipovanu Dorin',
     notes: 'fratele mamei miresei',
-  },
-  {
-    id: 115,
-    name: 'Lipovanu Iustin',
-    notes: 'copil - 3 ani',
   },
   {
     id: 116,
@@ -172,8 +167,8 @@ const invitees = [
   },
   {
     id: 129,
-    name: 'Iubita lu Daniel Lucan',
-    notes: '',
+    name: 'Bazga Elena Petronela',
+    notes: 'iubita lu Daniel Lucan',
   },
   {
     id: 130,
@@ -197,12 +192,12 @@ const invitees = [
   },
   {
     id: 134,
-    name: 'Lavinia Amarculesei',
+    name: 'Amărculesei Lavinia',
     notes: '',
   },
   {
     id: 135,
-    name: 'Lavinia Amarculesei - iubit',
+    name: 'Amărculesei Lavinia - iubit',
     notes: '',
   },
   {

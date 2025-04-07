@@ -16,14 +16,14 @@ const RoomContainer = styled.div`
 
   ${(props) =>
     props.isOver &&
-    !props.isFull  
+    !props.isFull &&
     `
     box-shadow: 0 0 0 2px #ffbd59, 0 4px 10px rgba(0, 0, 0, 0.12);
     background-color: #fff8f0;
   `}
 
   ${(props) =>
-    props.isFull && 
+    props.isFull &&
     `
     border: 1px solid hsl(100 50% 70% / 1);
     background-color: hsl(100 50% 90% / 1);
@@ -97,16 +97,18 @@ function Room({ id, name, capacity, guests, onAssignPerson, onUnassignPerson, se
         if (item.inRoom && item.roomId && item.roomId !== id) {
           // IMPORTANT: When moving between rooms, we need to be very careful
           // about the state update sequence
-          
+
           // First, remove from the original room without adding to unassigned list
           // Create a custom event to handle the room-to-room transfer
-          window.dispatchEvent(new CustomEvent('room-to-room-transfer', { 
-            detail: { 
-              personId: item.id, 
-              fromRoomId: item.roomId,
-              toRoomId: id
-            } 
-          }));
+          window.dispatchEvent(
+            new CustomEvent('room-to-room-transfer', {
+              detail: {
+                personId: item.id,
+                fromRoomId: item.roomId,
+                toRoomId: id,
+              },
+            }),
+          );
         } else if (!item.inRoom) {
           // For drops from the person list, just use the normal assign function
           onAssignPerson(item.id, id);
@@ -134,10 +136,10 @@ function Room({ id, name, capacity, guests, onAssignPerson, onUnassignPerson, se
         {guests.length > 0 ? (
           guests.map((guest) => {
             // Determine if this person should be highlighted
-            const shouldHighlight = 
+            const shouldHighlight =
               (foundPerson && foundPerson.person.id === guest.id) ||
               (searchTerm && guest.name.toLowerCase().includes(searchTerm.toLowerCase()));
-            
+
             return (
               <Person
                 key={guest.id}
