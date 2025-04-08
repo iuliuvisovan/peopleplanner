@@ -151,6 +151,7 @@ function Room({ id, name, capacity, guests, onAssignPerson, onUnassignPerson, se
                 fromWho={guest.fromWho}
                 highlight={shouldHighlight}
                 notes={guest.notes}
+                numberOfNights={guest.numberOfNights}
               />
             );
           })

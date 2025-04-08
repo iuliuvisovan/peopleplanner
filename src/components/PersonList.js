@@ -124,6 +124,7 @@ function PersonList({ people, searchTerm, foundPerson }) {
           inRoom={false}
           highlight={true}
           notes={person.notes}
+          numberOfNights={person.numberOfNights}
         />
       );
     }
@@ -142,6 +143,7 @@ function PersonList({ people, searchTerm, foundPerson }) {
           inRoom={false}
           highlight={shouldHighlight}
           notes={person.notes}
+          numberOfNights={person.numberOfNights}
         />
       );
     });

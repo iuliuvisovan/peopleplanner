@@ -19,6 +19,7 @@ const PersonItem = styled.div`
       if (props.highlight) return '#ffbd59';
       return props.fromWho === 'groom' ? '#1991d2' : 'hsl(349 71% 76% / 1)';
     }};
+  position: relative;
 
   &:hover {
     transform: scale(103%);
@@ -46,7 +47,21 @@ const Notes = styled.p`
   margin-bottom: -6px;
 `;
 
-function Person({ id, name, inRoom, roomId, onUnassign, fromWho, highlight = false, notes }) {
+const NightsTag = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #00bcd4;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-top-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  font-family: 'Montserrat', sans-serif;
+`;
+
+function Person({ id, name, inRoom, roomId, onUnassign, fromWho, highlight = false, notes, numberOfNights }) {
   const [{ isDragging }, drag] = useDrag(
     () => ({
       type: inRoom ? 'ASSIGNED_PERSON' : 'PERSON',
@@ -87,6 +102,7 @@ function Person({ id, name, inRoom, roomId, onUnassign, fromWho, highlight = fal
     >
       <PersonName style={{ marginTop: notes ? -6 : 0 }}>{name}</PersonName>
       {notes && <Notes>{notes}</Notes>}
+      {numberOfNights && <NightsTag>{numberOfNights} nopți</NightsTag>}
     </PersonItem>
   );
 }
