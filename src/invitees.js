@@ -30,7 +30,6 @@ const invitees = [
   { id: 29, name: 'Spiridon Ionela', fromWho: 'groom', notes: '"Chifor Ionela"' },
   { id: 30, name: 'Godjea Gelu', fromWho: 'groom' },
   { id: 31, name: 'Godjea', fromWho: 'groom' },
-  { id: 97, name: 'Timoftoaie Georgiana', notes: '' },
   { id: 97, name: 'Timoftoaie Georgiana', notes: '+copil Iustin 3 ani' },
   { id: 98, name: 'Timoftoaie Petru', notes: '' },
   { id: 99, name: 'Timoftoaie Leonardo', notes: 'copil - 10 ani' },
