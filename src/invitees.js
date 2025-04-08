@@ -3,18 +3,18 @@ const invitees = [
   { id: 2, name: 'Danci Andrei', fromWho: 'groom' },
   { id: 3, name: 'Danci Mariana', fromWho: 'groom' },
   { id: 4, name: 'Danci Vasile', fromWho: 'groom' },
-  { id: 5, name: 'Aurelia Vișovan', fromWho: 'groom' },
-  { id: 6, name: 'Can Çakmur', fromWho: 'groom', notes: 'prietenul Aureliei Vișovan' },
-  { id: 7, name: 'Iulian Mîcnea', fromWho: 'groom' },
-  { id: 8, name: 'Diana Mîcnea', fromWho: 'groom', notes: 'prietena lui Iulian Mîcnea' },
+  { id: 5, name: 'Vișovan Aurelia', fromWho: 'groom' },
+  { id: 6, name: 'Çakmur Can', fromWho: 'groom', notes: 'prietenul Aureliei Vișovan' },
+  { id: 7, name: 'Mîcnea Iulian', fromWho: 'groom' },
+  { id: 8, name: 'Mîcnea Diana', fromWho: 'groom', notes: 'prietena lui Iulian Mîcnea' },
   { id: 9, name: 'Ardelean Ramona', fromWho: 'groom' },
   { id: 10, name: 'Ardelean Petrică', fromWho: 'groom' },
-  { id: 11, name: 'Doina Balasz', fromWho: 'groom' },
-  { id: 12, name: 'Radu Ilnițchi', fromWho: 'groom', notes: 'soțul Doinei Balasz' },
-  { id: 13, name: 'Paul Balasz', fromWho: 'groom' },
-  { id: 14, name: 'Robert Balasz', fromWho: 'groom' },
-  { id: 15, name: 'Vasi Teleptean', fromWho: 'groom' },
-  { id: 16, name: 'Vasi Teleptean - logodnică', fromWho: 'groom' },
+  { id: 11, name: 'Balasz Doina', fromWho: 'groom' },
+  { id: 12, name: 'Ilnițchi Radu', fromWho: 'groom', notes: 'soțul Doinei Balasz' },
+  { id: 13, name: 'Balasz Paul', fromWho: 'groom' },
+  { id: 14, name: 'Balasz Robert', fromWho: 'groom' },
+  { id: 15, name: 'Teleptean Vasi ', fromWho: 'groom' },
+  { id: 16, name: 'Clemcovici Melisa', fromWho: 'groom', notes: 'logodnica lui Teleptean Vasi' },
   { id: 17, name: 'Hajdu Romina', fromWho: 'groom', notes: '"Romina Carpiuc"' },
   { id: 18, name: 'Hajdu Istvan', fromWho: 'groom' },
   { id: 19, name: 'Pr. Ardelean Cornel', fromWho: 'groom' },
@@ -28,13 +28,9 @@ const invitees = [
   { id: 27, name: 'Mursa (Turcan) Valentina', fromWho: 'groom' },
   { id: 28, name: 'Spiridon Iulian Marian', fromWho: 'groom' },
   { id: 29, name: 'Spiridon Ionela', fromWho: 'groom', notes: '"Chifor Ionela"' },
-  { id: 30, name: 'Gelu Godjea', fromWho: 'groom' },
-  { id: 31, name: 'Flavia Godjea', fromWho: 'groom' },
-  {
-    id: 97,
-    name: 'Timoftoaie Georgiana',
-    notes: '',
-  },
+  { id: 30, name: 'Godjea Gelu', fromWho: 'groom' },
+  { id: 31, name: 'Godjea', fromWho: 'groom' },
+  { id: 97, name: 'Timoftoaie Georgiana', notes: '' },
   {
     id: 98,
     name: 'Timoftoaie Petru',
@@ -47,7 +43,7 @@ const invitees = [
   },
   {
     id: 100,
-    name: 'Mirabela Gherasim',
+    name: 'Gherasim Mirabela',
     notes: '',
   },
   {
@@ -57,27 +53,27 @@ const invitees = [
   },
   {
     id: 102,
-    name: 'Andreea Țăruș',
+    name: 'Țăruș Andreea',
     notes: '',
   },
   {
     id: 103,
-    name: 'Ilie Vieru',
+    name: 'Vieru Ilie',
     notes: 'prietenul Andreei Țăruș',
   },
   {
     id: 104,
-    name: 'Alexandra Ciobanu',
+    name: 'Ciobanu Alexandra',
     notes: '"Alexandra Manolache"',
   },
   {
     id: 105,
-    name: 'Gheorghiță Ciobanu',
+    name: 'Ciobanu Gheorghiță',
     notes: '',
   },
   {
     id: 106,
-    name: 'Daniel Roșca',
+    name: 'Roșca Daniel',
     notes: '',
   },
   {
@@ -97,7 +93,7 @@ const invitees = [
   },
   {
     id: 110,
-    name: 'Bogdan Iacob',
+    name: 'Iacob Bogdan',
     notes: '',
   },
   {
@@ -117,42 +113,42 @@ const invitees = [
   },
   {
     id: 117,
-    name: 'Iuliana Constantiniu',
+    name: 'Constantiniu Iuliana',
     notes: '"Coca Marțin"',
   },
   {
     id: 118,
-    name: 'Tudor Constantiniu',
+    name: 'Constantiniu Tudor',
     notes: '',
   },
   {
     id: 121,
-    name: 'Valerica Lucan',
+    name: 'Lucan Valerica',
     notes: '',
   },
   {
     id: 122,
-    name: 'Costel Cilof',
+    name: 'Cilof Costel',
     notes: 'iubitul Valericăi Lucan',
   },
   {
     id: 123,
-    name: 'Gelu Călin',
+    name: 'Călin Gelu',
     notes: '',
   },
   {
     id: 124,
-    name: 'Valentina Călin',
+    name: 'Călin Valentina',
     notes: '',
   },
   {
     id: 125,
-    name: 'Elena Marțin',
+    name: 'Marțin Elena',
     notes: '',
   },
   {
     id: 126,
-    name: 'Alexandra Lucan',
+    name: 'Lucan Alexandra',
     notes: '',
   },
   {
@@ -162,12 +158,12 @@ const invitees = [
   },
   {
     id: 128,
-    name: 'Daniel Lucan',
+    name: 'Lucan Daniel',
     notes: '',
   },
   {
     id: 129,
-    name: 'Bazga Elena Petronela',
+    name: 'Bazga Elena-Petronela',
     notes: 'iubita lu Daniel Lucan',
   },
   {
@@ -182,12 +178,12 @@ const invitees = [
   },
   {
     id: 132,
-    name: 'Gabi Marțin',
+    name: 'Marțin Gabi',
     notes: '',
   },
   {
     id: 133,
-    name: 'Călina Marțin',
+    name: 'Marțin Călina',
     notes: '',
   },
   {
@@ -202,22 +198,22 @@ const invitees = [
   },
   {
     id: 136,
-    name: 'Iuliana Țuțuianu (Axinte)',
-    notes: '',
+    name: 'Țuțuianu Iuliana',
+    notes: '"Iuliana Axinte"',
   },
   {
     id: 137,
-    name: 'Ovidiu Țuțuianu',
+    name: 'Țuțuianu Ovidiu',
     notes: '',
   },
   {
     id: 138,
-    name: 'Mălina Apopei',
+    name: 'Apopei Mălina',
     notes: '',
   },
   {
     id: 139,
-    name: 'Marius Apopei',
+    name: 'Apopei Marius',
     notes: '',
   },
   {
@@ -232,22 +228,22 @@ const invitees = [
   },
   {
     id: 142,
-    name: 'Gabriela Mandric',
+    name: 'Mandric Gabriela',
     notes: '"Gabi Andrioaie"',
   },
   {
     id: 143,
-    name: 'Cătălin Mandric',
+    name: 'Mandric Cătălin',
     notes: '',
   },
   {
     id: 144,
-    name: 'Alexandru Archip',
+    name: 'Archip Alexandru',
     notes: '',
   },
   {
     id: 145,
-    name: 'Cristina Archip',
+    name: 'Archip Cristina',
     notes: '',
   },
   {
@@ -282,27 +278,27 @@ const invitees = [
   },
   {
     id: 152,
-    name: 'Mihaela Mătase',
+    name: 'Mătase Mihaela',
     notes: '',
   },
   {
     id: 153,
-    name: 'Puiu Mătase',
+    name: 'Mătase Puiu',
     notes: '',
   },
   {
     id: 156,
-    name: 'Cristina Marinela Balmuș',
+    name: 'Balmuș Cristina-Marinela',
     notes: '"Cristina Eșanu"',
   },
   {
     id: 157,
-    name: 'Ionuț Balmuș',
+    name: 'Balmuș Ionuț',
     notes: 'soț Cristina Eșanu',
   },
   {
     id: 158,
-    name: 'Mihaela Chelciuc',
+    name: 'Chelciuc Mihaela',
     notes: '',
   },
   {
