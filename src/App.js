@@ -5,8 +5,8 @@ import styled from 'styled-components';
 import './App.css';
 import PersonList from './components/PersonList';
 import HotelList from './components/HotelList';
+import Auth from './components/Auth';
 import invitees from './invitees';
- 
 
 // Cazari hardcodate in ordine: mai intai pensiunile, apoi hotelurile
 const accommodations = [
@@ -138,6 +138,9 @@ const MainContainer = styled.main`
 `;
 
 function App() {
+  // State for authentication
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  
   // Load saved state from localStorage or use defaults
   const loadSavedState = () => {
     try {
@@ -487,6 +490,17 @@ function App() {
     setFoundPerson(null);
   };
 
+  // Handle successful authentication
+  const handleAuthenticated = () => {
+    setIsAuthenticated(true);
+  };
+
+  // Show auth screen if not authenticated
+  if (!isAuthenticated) {
+    return <Auth onAuthenticated={handleAuthenticated} />;
+  }
+
+  // Show main app if authenticated
   return (
     <DndProvider backend={HTML5Backend}>
       <AppContainer>
