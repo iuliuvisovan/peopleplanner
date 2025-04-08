@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/peopleplanner/static/css/main.aaf433b1.css",
-    "main.js": "/peopleplanner/static/js/main.54b8b82d.js",
+    "main.js": "/peopleplanner/static/js/main.1011a752.js",
     "static/js/453.7535980d.chunk.js": "/peopleplanner/static/js/453.7535980d.chunk.js",
     "static/media/cover.jpg": "/peopleplanner/static/media/cover.518f5613359cbf6b51d8.jpg",
     "index.html": "/peopleplanner/index.html",
     "main.aaf433b1.css.map": "/peopleplanner/static/css/main.aaf433b1.css.map",
-    "main.54b8b82d.js.map": "/peopleplanner/static/js/main.54b8b82d.js.map",
+    "main.1011a752.js.map": "/peopleplanner/static/js/main.1011a752.js.map",
     "453.7535980d.chunk.js.map": "/peopleplanner/static/js/453.7535980d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.aaf433b1.css",
-    "static/js/main.54b8b82d.js"
+    "static/js/main.1011a752.js"
   ]
 }
