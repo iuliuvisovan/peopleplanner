@@ -154,7 +154,7 @@ function PersonList({ people, searchTerm, foundPerson }) {
       <TitleContainer>
         <Title>Invitați</Title>
         <CollapseButton onClick={toggleCollapse}>
-          {isCollapsed ? '↓' : '↑'}
+          {isCollapsed ? '→' : '←'}
         </CollapseButton>
       </TitleContainer>
       <List>
