@@ -48,6 +48,7 @@ const HotelHeader = styled.div`
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
   cursor: pointer;
   transition: all 0.2s;
+  position: relative;
 
   &:hover {
     transform: translateY(-2px);
@@ -59,6 +60,8 @@ const HotelName = styled.h3`
   margin: 0;
   font-weight: 600;
   font-family: 'Montserrat', sans-serif;
+  display: flex;
+  align-items: center;
 `;
 
 const HotelIcon = styled.span`
@@ -93,6 +96,18 @@ const ExpandIcon = styled.span`
   transform: ${(props) => (props.expanded ? 'rotate(180deg)' : 'rotate(0deg)')};
   color: #4a2500;
   opacity: 0.7;
+`;
+
+const NightsTag = styled.div`
+  background-color: #1a237e;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-family: 'Montserrat', sans-serif;
+  margin-left: 8px;
+  display: inline-block;
 `;
 
 const RoomsGrid = styled.div`
@@ -190,7 +205,10 @@ function HotelList({ hotels, onAssignPerson, onUnassignPerson, searchTerm, found
               <HotelHeader onClick={() => toggleHotelExpansion(hotel.id)}>
                 <HeaderContent>
                   <HotelIcon>{getHotelIcon(hotel.name)}</HotelIcon>
-                  <HotelName>{hotel.name}</HotelName>
+                  <HotelName>
+                    {hotel.name}
+                    {hotel.numberOfNights && <NightsTag>{hotel.numberOfNights} nopți</NightsTag>}
+                  </HotelName>
                 </HeaderContent>
                 <OccupancyCounter isFull={isFull}>
                   {totalOccupancy}/{totalCapacity} locuri ocupate

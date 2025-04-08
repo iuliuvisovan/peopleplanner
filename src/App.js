@@ -37,6 +37,7 @@ const accommodations = [
   {
     id: 3,
     name: 'Pensiunea "Casa Făget"',
+    numberOfNights: 2,
     rooms: [
       { id: 'faget-double-1', name: 'Cameră Dublă 1', capacity: 2, guests: [] },
       { id: 'faget-double-2', name: 'Cameră Dublă 2', capacity: 2, guests: [] },

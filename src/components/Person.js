@@ -51,7 +51,7 @@ const NightsTag = styled.div`
   position: absolute;
   top: 0;
   right: 0;
-  background-color: #00bcd4;
+  background-color: #1a237e;
   color: white;
   font-size: 0.7rem;
   font-weight: 600;
