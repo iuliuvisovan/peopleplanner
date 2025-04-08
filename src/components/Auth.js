@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const AuthContainer = styled.div`
@@ -74,10 +74,20 @@ const Auth = ({ onAuthenticated }) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   
+  useEffect(() => {
+    // Check if already authenticated
+    const savedPassword = sessionStorage.getItem('passwordSaved');
+    if (savedPassword === 'true') {
+      onAuthenticated();
+    }
+  }, [onAuthenticated]);
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     
     if (password === 'puianscumpelan') {
+      // Save authentication state
+      sessionStorage.setItem('passwordSaved', 'true');
       onAuthenticated();
     } else {
       setError('Parola incorectă. Încercați din nou.');
