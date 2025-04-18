@@ -126,9 +126,14 @@ const RoomsGrid = styled.div`
 `;
 
 function HotelList({ hotels, onAssignPerson, onUnassignPerson, searchTerm, foundPerson }) {
-  // State to track which hotels are expanded, with first hotel expanded by default
-  const [expandedHotels, setExpandedHotels] = useState({
-    1: true // Set the first pensiune (Casa Mari) to be expanded by default
+  // State to track which hotels are expanded, with all hotels expanded by default
+  const [expandedHotels, setExpandedHotels] = useState(() => {
+    // Create an object with all hotels expanded by default
+    const expanded = {};
+    hotels.forEach(hotel => {
+      expanded[hotel.id] = true;
+    });
+    return expanded;
   });
 
   const getHotelIcon = (hotelName) => {
@@ -207,7 +212,7 @@ function HotelList({ hotels, onAssignPerson, onUnassignPerson, searchTerm, found
                   <HotelIcon>{getHotelIcon(hotel.name)}</HotelIcon>
                   <HotelName>
                     {hotel.name}
-                    {hotel.numberOfNights && <NightsTag>{hotel.numberOfNights} nopți</NightsTag>}
+                    {hotel.numberOfNights && <NightsTag>{hotel.numberOfNights} 🌙</NightsTag>}
                   </HotelName>
                 </HeaderContent>
                 <OccupancyCounter isFull={isFull}>

@@ -22,9 +22,6 @@ const invitees = [
   { id: 27, name: 'Mursa (Turcan) Valentina', fromWho: 'groom' },
   { id: 28, name: 'Spiridon Iulian Marian', fromWho: 'groom' },
   { id: 29, name: 'Spiridon Ionela', fromWho: 'groom', notes: '"Chifor Ionela"' },
-  { id: 97, name: 'Timoftoaie Georgiana', notes: '+copil Iustin 3 ani', numberOfNights: 2 },
-  { id: 98, name: 'Timoftoaie Petru', notes: '', numberOfNights: 2 },
-  { id: 99, name: 'Timoftoaie Leonardo', notes: 'copil - 10 ani', numberOfNights: 2 },
   { id: 100, name: 'Gherasim Mirabela', notes: '', numberOfNights: 2 },
   { id: 101, name: 'Carcea Ionuț', notes: 'prietenul Mirabelei Gherasim', numberOfNights: 2 },
   { id: 102, name: 'Țăruș Andreea', notes: '', numberOfNights: 2 },
@@ -71,8 +68,8 @@ const invitees = [
   { id: 151, name: 'Galbin Anișoara', notes: '' },
   { id: 152, name: 'Mătase Mihaela', notes: '', numberOfNights: 2 },
   { id: 153, name: 'Mătase Puiu', notes: '', numberOfNights: 2 },
-  { id: 158, name: 'Chelciuc Mihaela', notes: '', numberOfNights: 2 },
-  { id: 159, name: 'Agache Bogdan', notes: 'iubitul Mihaelei Chelciuc', numberOfNights: 2 },
+  { id: 158, name: 'Chelciuc Mihaela', notes: '', numberOfNights: 1 },
+  { id: 159, name: 'Agache Bogdan', notes: 'iubitul Mihaelei Chelciuc', numberOfNights: 1 },
 ];
 
 export default invitees;
