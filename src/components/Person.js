@@ -51,10 +51,10 @@ const NightsTag = styled.div`
   position: absolute;
   top: 0;
   right: 0;
-  background-color: #1a237e;
+  background-color: ${props => props.nights === 1 ? '#8594e5' : '#1a237e'};
   color: white;
-  font-size: 0.7rem;
-  font-weight: 600;
+  font-size: 0.9rem;
+  font-weight: 700;
   padding: 2px 8px;
   border-top-right-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
@@ -102,7 +102,7 @@ function Person({ id, name, inRoom, roomId, onUnassign, fromWho, highlight = fal
     >
       <PersonName style={{ marginTop: notes ? -6 : 0 }}>{name}</PersonName>
       {notes && <Notes>{notes}</Notes>}
-      {numberOfNights && <NightsTag>{numberOfNights} nopți</NightsTag>}
+      {numberOfNights && <NightsTag nights={numberOfNights}>{numberOfNights} 🌙</NightsTag>}
     </PersonItem>
   );
 }
