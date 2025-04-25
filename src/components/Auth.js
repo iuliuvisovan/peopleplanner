@@ -76,7 +76,7 @@ const Auth = ({ onAuthenticated }) => {
   
   useEffect(() => {
     // Check if already authenticated
-    const savedPassword = sessionStorage.getItem('passwordSaved');
+    const savedPassword = localStorage.getItem('passwordSaved');
     if (savedPassword === 'true') {
       onAuthenticated();
     }
@@ -87,7 +87,7 @@ const Auth = ({ onAuthenticated }) => {
     
     if (password === 'puianscumpelan') {
       // Save authentication state
-      sessionStorage.setItem('passwordSaved', 'true');
+      localStorage.setItem('passwordSaved', 'true');
       onAuthenticated();
     } else {
       setError('Parola incorectă. Încercați din nou.');
