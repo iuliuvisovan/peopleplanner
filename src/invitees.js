@@ -1,8 +1,6 @@
 const invitees = [
   { id: 1, name: 'Danci Crina', fromWho: 'groom', numberOfNights: 2 },
   { id: 2, name: 'Danci Andrei', fromWho: 'groom', numberOfNights: 2 },
-  { id: 3, name: 'Danci Mariana', fromWho: 'groom', numberOfNights: 1 },
-  { id: 4, name: 'Danci Vasile', fromWho: 'groom', numberOfNights: 1 },
   { id: 5, name: 'Vișovan Aurelia', fromWho: 'groom', numberOfNights: 2 },
   { id: 6, name: 'Çakmur Can', fromWho: 'groom', notes: 'prietenul Aureliei Vișovan', numberOfNights: 2 },
   { id: 7, name: 'Mîcnea Iulian', fromWho: 'groom', numberOfNights: 2 },
