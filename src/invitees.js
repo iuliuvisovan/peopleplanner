@@ -1,6 +1,7 @@
 const invitees = [
   { id: 1, name: 'Danci Crina', fromWho: 'groom', numberOfNights: 2 },
   { id: 2, name: 'Danci Andrei', fromWho: 'groom', numberOfNights: 2 },
+  { id: 3, name: 'Paul Ananie', fromWho: 'groom', numberOfNights: 2 },
   { id: 5, name: 'Vișovan Aurelia', fromWho: 'groom', numberOfNights: 2 },
   { id: 6, name: 'Çakmur Can', fromWho: 'groom', notes: 'prietenul Aureliei Vișovan', numberOfNights: 2 },
   { id: 7, name: 'Mîcnea Iulian', fromWho: 'groom', numberOfNights: 2 },
@@ -45,12 +46,16 @@ const invitees = [
   { id: 133, name: 'Marțin Călina', notes: '', numberOfNights: 2 },
   { id: 136, name: 'Țuțuianu Iuliana', notes: '"Iuliana Axinte"', numberOfNights: 2 },
   { id: 137, name: 'Țuțuianu Ovidiu', notes: '', numberOfNights: 2 },
-  { id: 142, name: 'Mandric Gabriela', notes: '"Gabi Andrioaie"', numberOfNights: 2 },
+  { id: 142, name: 'Mandric Gabriela', notes: '"Gabi Andrioaie" + copil 3 luni', numberOfNights: 2 },
   { id: 143, name: 'Mandric Cătălin', notes: '', numberOfNights: 2 },
   { id: 152, name: 'Mătase Mihaela', notes: '', numberOfNights: 2 },
   { id: 153, name: 'Mătase Puiu', notes: '', numberOfNights: 2 },
   { id: 158, name: 'Chelciuc Mihaela', notes: '', numberOfNights: 1 },
   { id: 159, name: 'Agache Bogdan', notes: 'iubitul Mihaelei Chelciuc', numberOfNights: 1 },
+  { id: 160, name: 'Taraf 1',   numberOfNights: 1 },
+  { id: 161, name: 'Taraf 2',   numberOfNights: 1 },
+  { id: 162, name: 'Taraf 3',   numberOfNights: 1 },
+  { id: 163, name: 'Taraf 4',   numberOfNights: 1 },
 ];
 
 export default invitees;

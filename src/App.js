@@ -13,7 +13,8 @@ const accommodations = [
   // Mai intai pensiunile
   {
     id: 1,
-    name: 'Pensiunea "Casa Mari"',
+    name: 'Pensiunea "Casa Mari" - 4 camere',
+    numberOfNights: 2,
     rooms: [
       { id: 'casa-mari-double-1', name: 'Cameră Dublă 1', capacity: 2, guests: [] },
       { id: 'casa-mari-double-2', name: 'Cameră Dublă 2', capacity: 2, guests: [] },
@@ -24,6 +25,7 @@ const accommodations = [
   {
     id: 2,
     name: 'Pensiunea "View" - 7 camere',
+    numberOfNights: 2,
     rooms: [
       { id: 'view-double-1', name: 'Cameră Dublă 1', capacity: 2, guests: [] },
       { id: 'view-double-2', name: 'Cameră Dublă 2', capacity: 2, guests: [] },
@@ -36,7 +38,7 @@ const accommodations = [
   },
   {
     id: 3,
-    name: 'Pensiunea "Casa Făget"',
+    name: 'Pensiunea "Casa Făget" - 4 camere',
     numberOfNights: 2,
     rooms: [
       { id: 'faget-double-1', name: 'Cameră Dublă 1', capacity: 2, guests: [] },
