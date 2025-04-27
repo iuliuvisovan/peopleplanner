@@ -6,6 +6,8 @@ const invitees = [
   { id: 6, name: 'Çakmur Can', fromWho: 'groom', notes: 'prietenul Aureliei Vișovan', numberOfNights: 2 },
   { id: 7, name: 'Mîcnea Iulian', fromWho: 'groom', numberOfNights: 2 },
   { id: 8, name: 'Elena Geartu', fromWho: 'groom', notes: 'prietena lui Iulian Mîcnea', numberOfNights: 2 },
+  { id: 9, name: 'Ardelean Ramona', fromWho: 'groom', numberOfNights: 1 },
+  { id: 10, name: 'Ardelean Petrica', fromWho: 'groom', numberOfNights: 1 },
   { id: 11, name: 'Balasz Doina', fromWho: 'groom', numberOfNights: 1 },
   { id: 12, name: 'Ilnițchi Radu', fromWho: 'groom', notes: 'soțul Doinei Balasz', numberOfNights: 1 },
   { id: 17, name: 'Hajdu Romina', fromWho: 'groom', notes: '"Romina Carpiuc"', numberOfNights: 1 },
