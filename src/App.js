@@ -18,8 +18,8 @@ const accommodations = [
     rooms: [
       { id: 'casa-mari-double-1', name: 'Cameră Dublă 1', capacity: 2, guests: [] },
       { id: 'casa-mari-double-2', name: 'Cameră Dublă 2', capacity: 2, guests: [] },
-      { id: 'casa-mari-triple-1', name: 'Cameră Triplă 1', capacity: 3, guests: [] },
-      { id: 'casa-mari-triple-2', name: 'Cameră Triplă 2', capacity: 3, guests: [] },
+      { id: 'casa-mari-triple-1', name: 'Cameră Triplă 1 • cu pătuț bebeluș • de pe 17-19 mai (de Sâmbătă până LUNI)', capacity: 3, guests: [] },
+      { id: 'casa-mari-triple-2', name: 'Cameră Triplă 2 • cu copil cls a 5-a', capacity: 3, guests: [] },
     ],
   },
   {
@@ -64,16 +64,8 @@ const accommodations = [
       { id: 'elania-double-10', name: 'Cameră Dublă 10', capacity: 2, guests: [] },
       { id: 'elania-double-11', name: 'Cameră Dublă 11', capacity: 2, guests: [] },
       { id: 'elania-double-12', name: 'Cameră Dublă 12', capacity: 2, guests: [] },
-      { id: 'elania-double-13', name: 'Cameră Dublă 13', capacity: 2, guests: [] },
-      { id: 'elania-double-14', name: 'Cameră Dublă 14', capacity: 2, guests: [] },
-      { id: 'elania-double-15', name: 'Cameră Dublă 15', capacity: 2, guests: [] },
-      { id: 'elania-double-16', name: 'Cameră Dublă 16', capacity: 2, guests: [] },
-      { id: 'elania-double-17', name: 'Cameră Dublă 17', capacity: 2, guests: [] },
       { id: 'elania-twin-1', name: 'Camera Twin 1', capacity: 2, guests: [] },
       { id: 'elania-twin-2', name: 'Camera Twin 2', capacity: 2, guests: [] },
-      { id: 'elania-twin-3', name: 'Camera Twin 3', capacity: 2, guests: [] },
-      { id: 'elania-twin-4', name: 'Camera Twin 4', capacity: 2, guests: [] },
-      { id: 'elania-twin-5', name: 'Camera Twin 5', capacity: 2, guests: [] },
     ],
   },
 ];
